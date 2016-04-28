@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Thu Apr 28 14:49:21 BRT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-5dfd-4a95-000006ea52f8 
+on database directory memory:/home/mirandarfsm/workspace/fatec/lab6/sisgenc/sisgenc with class loader sun.misc.Launcher$AppClassLoader@501d5ebc 
+Loaded from file:/home/mirandarfsm/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_80-b15
+user.dir=/home/mirandarfsm/workspace/fatec/lab6/sisgenc
+os.name=Linux
+os.arch=amd64
+os.version=3.13.0-85-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Apr 28 14:49:23 BRT 2016:
+Shutting down instance a816c00e-0154-5dfd-4a95-000006ea52f8 on database directory memory:/home/mirandarfsm/workspace/fatec/lab6/sisgenc/sisgenc with class loader sun.misc.Launcher$AppClassLoader@501d5ebc 
