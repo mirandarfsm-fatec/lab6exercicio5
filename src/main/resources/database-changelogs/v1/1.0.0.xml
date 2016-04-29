@@ -6,6 +6,9 @@
 
 	<changeSet id="1" author="mirandarfsm">
 
+		<createSequence incrementBy="1" sequenceName="seq_usuario_id"
+			startValue="1" />
+
 		<createTable tableName="tb_usuario">
 			<column name="id_usuario" autoIncrement="true"
 				type="java.sql.Types.BIGINT">
@@ -28,8 +31,6 @@
 			</column>
 		</createTable>
 
-		<createSequence incrementBy="1" ordered="false" cycle="false"
-			schemaName="public" sequenceName="seq_usuario_id" startValue="1" />
 
 		<createTable tableName="tb_perfil">
 			<column name="id_perfil" type="java.sql.Types.varchar(50)">

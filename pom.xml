@@ -15,12 +15,13 @@
 	<properties>
 		<spring.version>4.1.8.RELEASE</spring.version>
 		<spring.data.version>1.9.0.RELEASE</spring.data.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>5.1.0.Final</hibernate.version>
 		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
-		<derby.version>10.11.1.1</derby.version>
+		<dbh2.version>1.4.191</dbh2.version>
 		<postgresql.version>9.3-1101-jdbc4</postgresql.version>
 		<liquibase.version>3.4.2</liquibase.version>
 		<junit.version>4.11</junit.version>
+		<jsf.version>2.2.2</jsf.version>
 		<primefaces.version>5.2</primefaces.version>
 		<javax.version>1.1.0.Final</javax.version>
 
@@ -66,7 +67,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
@@ -75,9 +76,9 @@
 
 		<!-- Derby Dependency -->
 		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>${derby.version}</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${dbh2.version}</version>
 		</dependency>
 
 		<!-- Postgresql Dependency -->
@@ -93,7 +94,19 @@
 			<artifactId>liquibase-core</artifactId>
 			<version>${liquibase.version}</version>
 		</dependency>
-
+		
+		<!-- JSF Dependency -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
+		
 		<!-- PrimeFaces Dependency -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
