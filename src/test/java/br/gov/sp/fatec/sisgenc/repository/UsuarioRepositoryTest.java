@@ -31,7 +31,7 @@ public class UsuarioRepositoryTest {
 	public void testInsercaoUsuario() {
 		boolean ativo = true;
 		Set<Perfil> perfis = new HashSet<Perfil>();
-		perfis.add(Perfil.PERFIL_USUARIO);
+		perfis.add(Perfil.ROLE_USER);
 		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
 		usuarioRepo.save(usuario);
 		Assert.assertTrue(usuario.getId() != null);

@@ -1,5 +1,6 @@
 package br.gov.sp.fatec.sisgenc.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,14 +19,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_usuario")
 @AttributeOverride(name = "id", column = @Column(name = "id", insertable = false, updatable = false))
-public class Usuario extends EntidadeGenerica {
+public class Usuario extends EntidadeGenerica implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +44,8 @@ public class Usuario extends EntidadeGenerica {
 	public Usuario() {
 	}
 
-	public Usuario(String nome, String login, String senha, boolean ativo, String email, Set<Perfil> perfis) {
+	public Usuario(String nome, String login, String senha, boolean ativo,
+			String email, Set<Perfil> perfis) {
 		super();
 		this.nome = nome;
 		this.login = login;
@@ -117,6 +121,46 @@ public class Usuario extends EntidadeGenerica {
 
 	public void setPerfis(Set<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	@Transient
+	public Collection<Perfil> getAuthorities() {
+		Set<Perfil> authorities = new HashSet<Perfil>();
+		authorities.add(Perfil.ROLE_USER);
+		for (Perfil perfil : this.getPerfis()) {
+			authorities.add(perfil);
+		}
+		return authorities;
+	}
+
+	@Transient
+	public String getPassword() {
+		return senha;
+	}
+
+	@Transient
+	public String getUsername() {
+		return login;
+	}
+
+	@Transient
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Transient
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Transient
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Transient
+	public boolean isEnabled() {
+		return ativo;
 	}
 
 }

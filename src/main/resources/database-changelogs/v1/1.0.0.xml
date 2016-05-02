@@ -43,12 +43,12 @@
 
 		<!-- Insert de dados -->
 		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
-			<column name="id_perfil" value="PERFIL_USUARIO" type="varchar(50)" />
+			<column name="id_perfil" value="ROLE_USER" type="varchar(50)" />
 			<column name="nome" value="Usuário" type="varchar(50)" />
 		</insert>
 
 		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
-			<column name="id_perfil" value="ADM" type="varchar(50)" />
+			<column name="id_perfil" value="ROLE_ADMIN" type="varchar(50)" />
 			<column name="nome" value="Administrador do Sistema" type="varchar(50)" />
 		</insert>
 

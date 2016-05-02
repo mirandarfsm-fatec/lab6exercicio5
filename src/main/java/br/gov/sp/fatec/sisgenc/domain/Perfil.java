@@ -1,9 +1,10 @@
 package br.gov.sp.fatec.sisgenc.domain;
 
-public enum Perfil {
+import org.springframework.security.core.GrantedAuthority;
 
-	PERFIL_USUARIO("Usuário"), ADM("Administrador do Sistema"), APF(
-			"Analista de Ponto de Função"), GPF("Gerente de Ponto de Função");
+public enum Perfil implements GrantedAuthority {
+
+	ROLE_USER("Usu�rio"), ROLE_ADMIN("Administrador do Sistema");
 
 	private String label;
 
@@ -17,6 +18,10 @@ public enum Perfil {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public String getAuthority() {
+		return name();
 	}
 	
 }

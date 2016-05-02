@@ -6,4 +6,6 @@ import br.gov.sp.fatec.sisgenc.domain.Usuario;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
+	Usuario findByNome(String userName);
+
 }
