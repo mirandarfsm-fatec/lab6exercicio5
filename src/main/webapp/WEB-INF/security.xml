@@ -16,7 +16,7 @@
 
 		<!-- Propriedades de logout -->
 		<sec:logout invalidate-session="true" delete-cookies="true"
-			logout-success-url="/pages/index.xhtml" />
+			logout-success-url="/pages/principal/index.xhtml" />
 
 
 
