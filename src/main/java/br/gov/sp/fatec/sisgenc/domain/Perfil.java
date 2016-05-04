@@ -23,5 +23,6 @@ public enum Perfil implements GrantedAuthority {
 	public String getAuthority() {
 		return name();
 	}
+
 	
 }

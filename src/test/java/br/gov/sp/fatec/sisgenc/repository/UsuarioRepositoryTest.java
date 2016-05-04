@@ -3,7 +3,9 @@ package br.gov.sp.fatec.sisgenc.repository;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hsqldb.util.DatabaseManagerSwing;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +29,12 @@ public class UsuarioRepositoryTest {
 	@Autowired
 	private transient UsuarioRepository usuarioRepo;
 
-	@Test
-	public void testInsercaoUsuario() {
-		boolean ativo = true;
-		Set<Perfil> perfis = new HashSet<Perfil>();
-		perfis.add(Perfil.ROLE_USER);
-		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
-		usuarioRepo.save(usuario);
-		usuario = usuarioRepo.findOne(usuario.getId());
-		Assert.assertNotNull(usuario);
+	@Before
+	public void setUp() {
+		DatabaseManagerSwing.main(new String[] { "--url",
+				"jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", "" });
 	}
-	
+
 	@Test
 	public void testFindByNome() {
 		boolean ativo = true;
@@ -49,7 +46,18 @@ public class UsuarioRepositoryTest {
 		usuario = usuarioRepo.findByNome(NOME);
 		Assert.assertTrue(usuario.getId() != null);
 	}
-	
+
+	@Test
+	public void testInsercaoUsuario() {
+		boolean ativo = true;
+		Set<Perfil> perfis = new HashSet<Perfil>();
+		perfis.add(Perfil.ROLE_USER);
+		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
+		usuarioRepo.save(usuario);
+		usuario = usuarioRepo.findOne(usuario.getId());
+		Assert.assertNotNull(usuario);
+	}
+
 	@Test
 	public void testFindByLogin() {
 		boolean ativo = true;
@@ -61,5 +69,5 @@ public class UsuarioRepositoryTest {
 		usuario = usuarioRepo.findByLogin(LOGIN);
 		Assert.assertTrue(usuario.getId() != null);
 	}
-	
+
 }

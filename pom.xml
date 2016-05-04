@@ -19,6 +19,7 @@
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
 		<dbh2.version>1.4.191</dbh2.version>
+		<hsqldb.version>2.3.3</hsqldb.version>
 		<postgresql.version>9.3-1101-jdbc4</postgresql.version>
 		<liquibase.version>3.4.2</liquibase.version>
 		<junit.version>4.11</junit.version>
@@ -99,6 +100,14 @@
 			<artifactId>h2</artifactId>
 			<version>${dbh2.version}</version>
 		</dependency>
+		
+		<!-- HSQLDB Dependency -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+
 
 		<!-- Postgresql Dependency -->
 		<dependency>
