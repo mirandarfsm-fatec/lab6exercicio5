@@ -27,7 +27,7 @@
 	</script>
 </h:head>
 <h:body styleClass="login">
-	<div class="vgap-100"></div>
+	<div class="vgap-200"></div>
 	<div class="container">
 		<div class="row">
 			<div class="span6 offset3 painel-login">
@@ -36,8 +36,7 @@
 						action='#{request.contextPath}/j_spring_security_check'
 						method="post">
 						<h:panelGrid style="margin: 30px auto 15px auto">
-							<img src="/sigapf/resources/imagens/fita.png" width="150"
-								height="150"></img>
+							<h1>SGEncomendas</h1>
 						</h:panelGrid>
 						<h:panelGrid style="margin: 30px auto 15px auto">
 							<h:panelGroup styleClass="inner-addon left-addon">
@@ -61,17 +60,8 @@
 								</button>
 							</div>
 						</h:panelGrid>
-						<h:panelGroup rendered="#{param.erro != null}">
-							<div class="alert alert-error text-center" id="error">${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}</div>
-						</h:panelGroup>
 					</form>
 				</p:panel>
-			</div>
-		</div>
-		<div class="vgap-10"></div>
-		<div class="row">
-			<div class="span6 offset3 text-center">
-				<small class="text-info">Versão: #{versaoInterna}</small>
 			</div>
 		</div>
 	</div>
