@@ -59,7 +59,8 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = SEQ_NAME, sequenceName = SEQ_NAME)
 	@GeneratedValue(generator = SEQ_NAME, strategy = GenerationType.SEQUENCE)
 	@Override
-	public Integer getId() {
+	@Column(name="id_usuario")
+	public Long getId() {
 		return id;
 	}
 

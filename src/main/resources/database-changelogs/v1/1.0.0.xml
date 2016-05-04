@@ -10,7 +10,7 @@
 			startValue="1" />
 
 		<createTable tableName="tb_usuario">
-			<column name="id_usuario" autoIncrement="true"
+			<column name="id" autoIncrement="true"
 				type="java.sql.Types.BIGINT">
 				<constraints primaryKey="true" primaryKeyName="PK_USUARIO" />
 			</column>
@@ -42,12 +42,12 @@
 		</createTable>
 
 		<!-- Insert de dados -->
-		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
+		<insert dbms="H2, PostgreSQL" schemaName="public" tableName="tb_perfil">
 			<column name="id_perfil" value="ROLE_USER" type="varchar(50)" />
 			<column name="nome" value="Usuário" type="varchar(50)" />
 		</insert>
 
-		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
+		<insert dbms="H2, PostgreSQL" schemaName="public" tableName="tb_perfil">
 			<column name="id_perfil" value="ROLE_ADMIN" type="varchar(50)" />
 			<column name="nome" value="Administrador do Sistema" type="varchar(50)" />
 		</insert>
@@ -61,7 +61,7 @@
 			</column>
 			<column name="id_usuario" type="java.sql.Types.BIGINT">
 				<constraints foreignKeyName="fk_usuario_perfil_id_usuario"
-					referencedTableName="tb_usuario" referencedColumnNames="id_usuario"
+					referencedTableName="tb_usuario" referencedColumnNames="id"
 					nullable="false" />
 			</column>
 		</createTable>
@@ -70,4 +70,25 @@
 			constraintName="pk_usuario_perfil" tableName="tb_usuario_perfil" />
 
 	</changeSet>
+	
+<!-- 	<changeSet id="2" author="mirandarfsm"> -->
+<!-- 		<insert dbms="H2, PostgreSQL" schemaName="public" tableName="tb_usuario"> -->
+<!-- 			<column name="NOME" value="Admin" /> -->
+<!-- 			<column name="LOGIN" value="admin" /> -->
+<!-- 			<column name="SENHA" value="698dc19d489c4e4db73e28a713eab07b" /> -->
+<!-- 			<column name="EMAIL" value="admin@admin.com" /> -->
+<!-- 			<column name="ATIVO" value="True" /> -->
+<!-- 		</insert> -->
+
+<!-- 		<insert dbms="H2, PostgreSQL" schemaName="public" tableName="tb_usuario_perfil"> -->
+<!-- 			<column name="id_perfil" value="ROLE_USER" /> -->
+<!-- 			<column name="id_usuario" value="1" /> -->
+<!-- 		</insert> -->
+
+<!-- 		<insert dbms="H2, PostgreSQL" schemaName="public" tableName="tb_usuario_perfil"> -->
+<!-- 			<column name="id_perfil" value="ROLE_ADMIN" /> -->
+<!-- 			<column name="id_usuario" value="1" /> -->
+<!-- 		</insert> -->
+<!-- 	</changeSet> -->
+
 </databaseChangeLog>
