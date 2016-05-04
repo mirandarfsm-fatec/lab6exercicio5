@@ -30,6 +30,11 @@
 	height: 100px;
 }
 
+.vgap-200 {
+	height: 200px;
+}
+
+
 .hgap-5 {
 	width: 5px;
 }

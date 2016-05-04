@@ -44,5 +44,7 @@
 	</bean>
 
 	<tx:annotation-driven />
+	
+	<import resource="security.xml"/>
 
 </beans>
