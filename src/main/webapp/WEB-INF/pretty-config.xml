@@ -27,7 +27,16 @@
 	<url-mapping id="cadastro-usuario-form">
 		<pattern value="/administracao/cadastro/usuario/#{id}" />
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-form.jsf" />
-		<action ></action>
+	</url-mapping>
+	
+		<url-mapping id="cadastro-encaminhamento-lista">
+		<pattern value="/administracao/cadastro/encaminhamento/" />
+		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-lista.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="cadastro-encaminhamento-form">
+		<pattern value="/administracao/cadastro/encaminhamento/#{id}" />
+		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-form.jsf" />
 	</url-mapping>
 
 </pretty-config>

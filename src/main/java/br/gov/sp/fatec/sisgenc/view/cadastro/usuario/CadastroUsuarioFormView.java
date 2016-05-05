@@ -11,8 +11,7 @@ import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.repository.UsuarioRepository;
 
-
-@ManagedBean(name="cadastroUsuarioForm")
+@ManagedBean(name = "cadastroUsuarioForm")
 @SessionScoped
 public class CadastroUsuarioFormView {
 
@@ -24,7 +23,8 @@ public class CadastroUsuarioFormView {
 	@PostConstruct
 	public void init() {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
-		setUsuario("novo".equals(id) ? new Usuario() : usuarioRepository.findOne(Long.valueOf(id)));
+		setUsuario("novo".equals(id) ? new Usuario() : usuarioRepository
+				.findOne(Long.valueOf(id)));
 	}
 
 	public void salvar() {
