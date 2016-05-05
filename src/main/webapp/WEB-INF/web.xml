@@ -32,10 +32,17 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     
+    <filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+    
     <!-- Welcome page -->
-    <welcome-file-list>
-        <welcome-file>pages/principal/index.xhtml</welcome-file>
-    </welcome-file-list>
+<!--     <welcome-file-list> -->
+<!--         <welcome-file>pages/principal/index.xhtml</welcome-file> -->
+<!--     </welcome-file-list> -->
 
     
     <!-- JSF mapping -->

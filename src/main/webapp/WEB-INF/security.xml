@@ -4,24 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<!-- Anotacoes -->
-	<sec:global-method-security
-		pre-post-annotations="enabled" />
-
-	<sec:http auto-config="true" use-expressions="false">
+	<sec:global-method-security pre-post-annotations="enabled" />
+		
+	<sec:http auto-config="true" use-expressions="true">
 
 		<!-- Configuracoes da pagina de login -->
-		<sec:form-login login-page="/pages/login/login.jsf"
+		<sec:form-login login-page="/login/" default-target-url="/home/"
 			login-processing-url="/j_spring_security_check" username-parameter="j_username"
-			password-parameter="j_password" authentication-failure-url="/pages/login/login.jsf?erro=true" />
+			password-parameter="j_password" authentication-failure-url="/login/?erro=true" />
 
 		<!-- Propriedades de logout -->
-		<sec:logout invalidate-session="true" delete-cookies="true"
-			logout-success-url="/pages/principal/index.xhtml" />
+		<sec:logout invalidate-session="true" delete-cookies="true" logout-success-url="/" />
 
 
-
-		<sec:intercept-url pattern="/pages/principal/**"
-			access="ROLE_USER" />
+		<sec:intercept-url pattern="/home/**" access="hasRole('ROLE_USER')" />
+		<sec:intercept-url pattern="/administracao/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:csrf disabled="true" />
 	</sec:http>
 
