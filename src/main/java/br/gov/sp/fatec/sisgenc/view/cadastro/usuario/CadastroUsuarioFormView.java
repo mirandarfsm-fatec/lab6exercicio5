@@ -1,6 +1,8 @@
 package br.gov.sp.fatec.sisgenc.view.cadastro.usuario;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +11,9 @@ import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.repository.UsuarioRepository;
 
+
+@ManagedBean(name="cadastroUsuarioForm")
+@SessionScoped
 public class CadastroUsuarioFormView {
 
 	@Autowired
