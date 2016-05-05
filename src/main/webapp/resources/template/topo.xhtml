@@ -11,15 +11,14 @@
 		<div class="span12 topo text-right">
 			<h:form>
 				<span>Olá,
-					#{authenticationContext.usuarioLogado.idPatente.sigla}
-					#{authenticationContext.usuarioLogado.nomeGuerra}.</span>
+					#{authenticationContext.usuarioLogado.nome}.</span>
 				<p:commandButton styleClass="btn btn-link" icon="fa fa-user"
 					action="#{authenticationContext.acessarMeuPerfil}"
 					value="Meu Perfil">
 				</p:commandButton>
-				<p:commandButton styleClass="btn btn-link" icon="fa fa-sign-out"
-					action="#{authenticationContext.logout}" value="Sair">
-				</p:commandButton>
+				<h:outputLink  value="#{facesContext.externalContext.requestContextPath}/logout" >
+					<h:outputText styleClass="btn btn-link" icon="fa fa-sign-out" value="Sair" />
+				</h:outputLink>
 			</h:form>
 		</div>
 	</div>

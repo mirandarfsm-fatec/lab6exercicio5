@@ -40,19 +40,7 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-
-		<!-- Insert de dados -->
-		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
-			<column name="id_perfil" value="ROLE_USER" type="varchar(50)" />
-			<column name="nome" value="Usuário" type="varchar(50)" />
-		</insert>
-
-		<insert dbms="Derby, PostgreSQL" schemaName="public" tableName="tb_perfil">
-			<column name="id_perfil" value="ROLE_ADMIN" type="varchar(50)" />
-			<column name="nome" value="Administrador do Sistema" type="varchar(50)" />
-		</insert>
-
-
+		
 		<createTable tableName="tb_usuario_perfil">
 			<column name="id_perfil" type="java.sql.Types.VARCHAR(50)">
 				<constraints foreignKeyName="fk_usuario_perfil_id_perfil"
@@ -70,4 +58,15 @@
 			constraintName="pk_usuario_perfil" tableName="tb_usuario_perfil" />
 
 	</changeSet>
+	<changeSet id="2" author="mirandarfsm">
+		<createTable tableName="tb_encaminhamento">
+			<column name="id_encaminhamento" type="java.sql.Types.BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ENCAMINHAMENTO"/>
+			</column>
+			
+		</createTable>
+	</changeSet>
+	<include file="classpath:database-changelogs/v1/carga_perfil_v1.sql" />
+	<include file="classpath:database-changelogs/v1/carga_admin_v1.sql" />
+
 </databaseChangeLog>

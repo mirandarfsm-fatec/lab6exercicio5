@@ -27,7 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_usuario")
-@AttributeOverride(name = "id", column = @Column(name = "id", insertable = false, updatable = false))
+@AttributeOverride(name = "id_usuario", column = @Column(name = "id_usuario", insertable = false, updatable = false))
 public class Usuario extends EntidadeGenerica implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -59,7 +59,8 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = SEQ_NAME, sequenceName = SEQ_NAME)
 	@GeneratedValue(generator = SEQ_NAME, strategy = GenerationType.SEQUENCE)
 	@Override
-	public Integer getId() {
+	@Column(name="id_usuario")
+	public Long getId() {
 		return id;
 	}
 

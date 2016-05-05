@@ -19,14 +19,18 @@
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
 		<dbh2.version>1.4.191</dbh2.version>
+		<hsqldb.version>2.3.3</hsqldb.version>
 		<postgresql.version>9.3-1101-jdbc4</postgresql.version>
 		<liquibase.version>3.4.2</liquibase.version>
 		<junit.version>4.11</junit.version>
 		<jsf.version>2.2.2</jsf.version>
+		<pretty.faces.version>2.0.12.Final</pretty.faces.version>
 		<primefaces.version>5.2</primefaces.version>
 		<javax.version>1.1.0.Final</javax.version>
    		<maven.compiler.source>1.7</maven.compiler.source>
  		<maven.compiler.target>1.7</maven.compiler.target>
+		<servlet.version>3.0.1</servlet.version>
+
 
 	</properties>
 
@@ -101,6 +105,14 @@
 			<version>${dbh2.version}</version>
 		</dependency>
 
+		<!-- HSQLDB Dependency -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+
+
 		<!-- Postgresql Dependency -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -121,10 +133,31 @@
 			<artifactId>jsf-api</artifactId>
 			<version>${jsf.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
+		</dependency>
+
+		<!-- Pretty Faces -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>${pretty.faces.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+			<version>${pretty.faces.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- PrimeFaces Dependency -->

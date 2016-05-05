@@ -9,22 +9,22 @@ public abstract class EntidadeGenerica implements Serializable {
 
 	private static final long serialVersionUID = 5948756185957797085L;
 
-	protected Integer id;
+	protected Long id;
 
 	public EntidadeGenerica() {
 		super();
 	}
 
-	public EntidadeGenerica(Integer id) {
+	public EntidadeGenerica(Long id) {
 		super();
 		this.id = id;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

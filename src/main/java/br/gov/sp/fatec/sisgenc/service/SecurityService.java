@@ -16,7 +16,7 @@ public class SecurityService implements UserDetailsService {
 	private UsuarioRepository usuarioRepository;
 
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		Usuario usuario = usuarioRepository.findByNome(userName);
+		Usuario usuario = usuarioRepository.findByLogin(userName);
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuário não encontrado!");
 		}
