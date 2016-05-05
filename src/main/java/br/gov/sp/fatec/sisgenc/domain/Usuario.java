@@ -27,7 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_usuario")
-@AttributeOverride(name = "id", column = @Column(name = "id", insertable = false, updatable = false))
+@AttributeOverride(name = "id_usuario", column = @Column(name = "id_usuario", insertable = false, updatable = false))
 public class Usuario extends EntidadeGenerica implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

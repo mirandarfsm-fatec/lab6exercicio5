@@ -10,7 +10,7 @@
 			startValue="1" />
 
 		<createTable tableName="tb_usuario">
-			<column name="id" autoIncrement="true"
+			<column name="id_usuario" autoIncrement="true"
 				type="java.sql.Types.BIGINT">
 				<constraints primaryKey="true" primaryKeyName="PK_USUARIO" />
 			</column>
@@ -49,7 +49,7 @@
 			</column>
 			<column name="id_usuario" type="java.sql.Types.BIGINT">
 				<constraints foreignKeyName="fk_usuario_perfil_id_usuario"
-					referencedTableName="tb_usuario" referencedColumnNames="id"
+					referencedTableName="tb_usuario" referencedColumnNames="id_usuario"
 					nullable="false" />
 			</column>
 		</createTable>
@@ -58,7 +58,14 @@
 			constraintName="pk_usuario_perfil" tableName="tb_usuario_perfil" />
 
 	</changeSet>
-	
+	<changeSet id="2" author="mirandarfsm">
+		<createTable tableName="tb_encaminhamento">
+			<column name="id_encaminhamento" type="java.sql.Types.BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ENCAMINHAMENTO"/>
+			</column>
+			
+		</createTable>
+	</changeSet>
 	<include file="classpath:database-changelogs/v1/carga_perfil_v1.sql" />
 	<include file="classpath:database-changelogs/v1/carga_admin_v1.sql" />
 
