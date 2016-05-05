@@ -9,7 +9,7 @@ public class Encomenda extends EntidadeGenerica {
 	private Usuario responsavel;
 	private String endereco;
 	private String telefone;
-	private boolean estado;
+	private Estado estado;
 	private boolean ativo;
 
 	public String getLocalizador() {
