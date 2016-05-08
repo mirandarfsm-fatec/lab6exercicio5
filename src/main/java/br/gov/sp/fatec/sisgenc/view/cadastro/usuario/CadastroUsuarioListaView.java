@@ -21,8 +21,12 @@ public class CadastroUsuarioListaView {
 	private List<Usuario> usuarios;
 
 	@PostConstruct
-	public void listar() {
-		setUsuarios((List<Usuario>) usuarioRepository.findAll());
+	public void init() {
+		usuarios = (List<Usuario>) usuarioRepository.findAll();
+	}
+	
+	public void remover(Long id){
+		usuarioRepository.delete(usuarioRepository.findOne(id));
 	}
 
 	public List<Usuario> getUsuarios() {

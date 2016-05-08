@@ -19,7 +19,7 @@ public class LocalizadorEncomendaView {
 	private String localizador;
 
 	public void localizarEncomenda() {
-
+		encomenda = encomendaRepository.findByLocalizador(localizador);
 	}
 
 	public Encomenda getEncomenda() {

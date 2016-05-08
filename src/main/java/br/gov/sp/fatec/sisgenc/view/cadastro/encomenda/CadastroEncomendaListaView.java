@@ -21,8 +21,12 @@ public class CadastroEncomendaListaView {
 	private List<Encomenda> encomendas;
 
 	@PostConstruct
-	public void listar() {
-		setEncomendas((List<Encomenda>) encomendaRepository.findAll());
+	public void init() {
+		encomendas = (List<Encomenda>) encomendaRepository.findAll();
+	}
+	
+	public void remover(Long id){
+		encomendaRepository.delete(encomendaRepository.findOne(id));
 	}
 
 	public List<Encomenda> getEncomendas() {

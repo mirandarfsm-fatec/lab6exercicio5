@@ -7,5 +7,8 @@ import br.gov.sp.fatec.sisgenc.domain.Encomenda;
 
 @Repository("encomendaRepository")
 public interface EncomendaRepository extends CrudRepository<Encomenda, Long> {
+	
+	public Encomenda findByLocalizador(String localizador);
+
 
 }
