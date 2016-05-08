@@ -10,10 +10,14 @@ import br.gov.sp.fatec.sisgenc.domain.Encomenda;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.repository.EncomendaRepository;
+import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
 @ManagedBean(name = "cadastroEncomendaForm")
 @SessionScoped
 public class CadastroEncaminhamentoFormView {
+
+	@Autowired
+	private EncomendaService encomendaService;
 
 	@Autowired
 	private EncomendaRepository encomendaRepository;
@@ -23,10 +27,14 @@ public class CadastroEncaminhamentoFormView {
 	@PostConstruct
 	public void init() {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
-		encomenda = "novo".equals(id) ? new Encomenda() : encomendaRepository.findOne(Long.valueOf(id));
+		encomenda = "novo".equals(id) ? new Encomenda() : encomendaRepository
+				.findOne(Long.valueOf(id));
 	}
 
 	public void salvar() {
+		String localizador = encomenda.getLocalizador() == null ? encomendaService
+				.generateHashLocalizator() : encomenda.getLocalizador();
+		encomenda.setLocalizador(localizador);
 		encomendaRepository.save(encomenda);
 		Mensagem.informacao("Encomenda salva com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/encomenda/");
