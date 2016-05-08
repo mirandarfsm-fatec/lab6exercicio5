@@ -27,7 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_usuario")
-@AttributeOverride(name = "id_usuario", column = @Column(name = "id_usuario", insertable = false, updatable = false))
+@AttributeOverride(name = "id", column = @Column(name = "id_usuario", insertable = false, updatable = false))
 public class Usuario extends EntidadeGenerica implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -113,7 +113,7 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 	}
 
 	@ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario"), foreignKey = @ForeignKey(name = "usuario_perfil_usuario_id_fkey"))
+	@JoinTable(name = "tb_usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario"), foreignKey = @ForeignKey(name = "fk_usuario_perfil_id_usuario"))
 	@Enumerated(EnumType.STRING)
 	@Column(name = "id_perfil", nullable = false)
 	public Set<Perfil> getPerfis() {

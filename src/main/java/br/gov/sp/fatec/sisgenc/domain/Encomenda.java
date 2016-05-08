@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_encomenda")
-@AttributeOverride(name = "id_encomenda", column = @Column(name = "id_encomenda", insertable = false, updatable = false))
+@AttributeOverride(name = "id", column = @Column(name = "id_encomenda", insertable = false, updatable = false))
 public class Encomenda extends EntidadeGenerica {
 
 	private static final long serialVersionUID = 7762648993793173974L;
@@ -73,6 +73,8 @@ public class Encomenda extends EntidadeGenerica {
 
 	@NotNull
 	@NotEmpty(message = "Campo obrigatório!")
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Encomenda.class)
+	@JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_encomenda_id_usuario"), nullable = false)
 	public Usuario getResponsavel() {
 		return responsavel;
 	}
@@ -109,8 +111,7 @@ public class Encomenda extends EntidadeGenerica {
 		this.origem = origem;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Percurso.class)
-	@JoinTable(name = "tb_percurso", joinColumns = @JoinColumn(name = "id_encomenda"), foreignKey = @ForeignKey(name = "percurso_id_encomenda_fkey"))
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Percurso.class)
 	public List<Percurso> getPercursos() {
 		return percursos;
 	}

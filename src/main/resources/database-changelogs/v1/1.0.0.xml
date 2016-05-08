@@ -40,7 +40,7 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-		
+
 		<createTable tableName="tb_usuario_perfil">
 			<column name="id_perfil" type="java.sql.Types.VARCHAR(50)">
 				<constraints foreignKeyName="fk_usuario_perfil_id_perfil"
@@ -59,12 +59,42 @@
 
 	</changeSet>
 	<changeSet id="2" author="mirandarfsm">
-		<createTable tableName="tb_encaminhamento">
-			<column name="id_encaminhamento" type="java.sql.Types.BIGINT">
-				<constraints primaryKey="true" primaryKeyName="PK_ENCAMINHAMENTO"/>
+		<createSequence incrementBy="1" sequenceName="seq_encomenda_id"
+			startValue="1" />
+		<createSequence incrementBy="1" sequenceName="seq_percurso_id"
+			startValue="1" />
+
+		<createTable tableName="tb_encomenda">
+			<column name="id_encomenda" type="java.sql.Types.BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ENCOMENDA" />
 			</column>
-			
+			<column name="descricao" type="java.sql.Types.VARCHAR(255)" />
+			<column name="id_usuario" type="java.sql.Types.BIGINT">
+				<constraints foreignKeyName="fk_encomenda_id_usuario"
+					referencedTableName="tb_encomenda" referencedColumnNames="id_encomenda"
+					nullable="false" />
+			</column>
+			<column name="origem" type="java.sql.Types.VARCHAR(255)" />
+			<column name="destino" type="java.sql.Types.VARCHAR(255)" />
+			<column name="telefone" type="java.sql.Types.VARCHAR(15)" />
+			<column name="ativo" type="java.sql.Types.BOOLEAN" />
+
 		</createTable>
+
+		<createTable tableName="tb_percurso">
+			<column name="id_percurso" type="java.sql.Types.BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_PERCURSO" />
+			</column>
+			<column name="id_encomenda" type="java.sql.Types.BIGINT">
+				<constraints foreignKeyName="fk_percurso_id_encomenda"
+					referencedTableName="tb_encomenda" referencedColumnNames="id_encomenda"
+					nullable="false" />
+			</column>
+			<column name="data" type="java.sql.Types.TIMESTAMP" />
+			<column name="endereco" type="java.sql.Types.VARCHAR(255)" />
+			<column name="estado" type="java.sql.Types.VARCHAR(50)" />
+		</createTable>
+
 	</changeSet>
 	<include file="classpath:database-changelogs/v1/carga_perfil_v1.sql" />
 	<include file="classpath:database-changelogs/v1/carga_admin_v1.sql" />
