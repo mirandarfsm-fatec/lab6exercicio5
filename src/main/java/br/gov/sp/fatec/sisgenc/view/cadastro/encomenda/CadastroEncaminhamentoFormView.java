@@ -32,8 +32,7 @@ public class CadastroEncaminhamentoFormView {
 	}
 
 	public void salvar() {
-		String localizador = encomenda.getLocalizador() == null ? encomendaService
-				.generateHashLocalizator() : encomenda.getLocalizador();
+		String localizador = encomenda.getLocalizador() == null ? encomendaService.generateHashLocalizator() : encomenda.getLocalizador();
 		encomenda.setLocalizador(localizador);
 		encomendaRepository.save(encomenda);
 		Mensagem.informacao("Encomenda salva com sucesso!");

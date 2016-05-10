@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	<url-mapping id="login">
-		<pattern value="/login/" />
+	<url-mapping id="loginn">
+		<pattern value="/" />
 		<view-id value="/pages/login/login.jsf" />
 	</url-mapping>
 
-	<url-mapping id="loginn">
-		<pattern value="/" />
+	<url-mapping id="login">
+		<pattern value="/login/" />
 		<view-id value="/pages/login/login.jsf" />
 	</url-mapping>
 
@@ -18,25 +18,35 @@
 		<pattern value="/home/" />
 		<view-id value="/pages/principal/index.jsf" />
 	</url-mapping>
-	
+
 	<url-mapping id="cadastro-usuario-lista">
 		<pattern value="/administracao/cadastro/usuario/" />
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-lista.jsf" />
 	</url-mapping>
-	
+
 	<url-mapping id="cadastro-usuario-form">
 		<pattern value="/administracao/cadastro/usuario/#{id}" />
-		<view-id value="/pages/cadastro/usuario/cadastro-usuario-form.jsf" />
+		<view-id value="/pages/cadastro/usuario/cadastro-usuario-formulario.jsf" />
 	</url-mapping>
-	
-		<url-mapping id="cadastro-encaminhamento-lista">
+
+	<url-mapping id="cadastro-usuario-detalhes">
+		<pattern value="/administracao/cadastro/usuario/#{id}/detalhes" />
+		<view-id value="/pages/cadastro/usuario/cadastro-usuario-detalhes.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cadastro-encaminhamento-lista">
 		<pattern value="/administracao/cadastro/encaminhamento/" />
 		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-lista.jsf" />
 	</url-mapping>
-	
+
 	<url-mapping id="cadastro-encaminhamento-form">
 		<pattern value="/administracao/cadastro/encaminhamento/#{id}" />
-		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-form.jsf" />
+		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-formulario.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cadastro-encaminhamento-detalhes">
+		<pattern value="/administracao/cadastro/encaminhamento/#{id}/detalhes" />
+		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-detalhes.jsf" />
 	</url-mapping>
 
 </pretty-config>
