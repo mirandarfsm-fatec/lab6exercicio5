@@ -19,6 +19,11 @@
 		<view-id value="/pages/principal/index.jsf" />
 	</url-mapping>
 
+	<url-mapping id="localizador">
+		<pattern value="/localizador/" />
+		<view-id value="/pages/localizador/localizador.jsf" />
+	</url-mapping>
+
 	<url-mapping id="cadastro-usuario-lista">
 		<pattern value="/administracao/cadastro/usuario/" />
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-lista.jsf" />

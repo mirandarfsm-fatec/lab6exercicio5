@@ -15,10 +15,10 @@
 
 		<!-- Propriedades de logout -->
 		<sec:logout invalidate-session="true" delete-cookies="true" logout-success-url="/" />
-
-
+		<sec:intercept-url pattern="/localizador/**" access="permitAll"/>
 		<sec:intercept-url pattern="/home/**" access="hasRole('ROLE_USER')" />
-		<sec:intercept-url pattern="/administracao/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/administracao/cadastro/encomenda/**" access="hasRole('ROLE_FUNC','ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/administracao/cadastro/usuario/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:csrf disabled="true" />
 	</sec:http>
 

@@ -4,7 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 public enum Perfil implements GrantedAuthority {
 
-	ROLE_USER("Usuário"), ROLE_ADMIN("Administrador do Sistema");
+	ROLE_USER("Usuário"), ROLE_FUNC("Funcionário da Empresa"), ROLE_ADMIN("Administrador do Sistema");
 
 	private String label;
 

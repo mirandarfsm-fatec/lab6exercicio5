@@ -11,87 +11,23 @@
 
 	<h:form id="form-menu" prependId="false">
 
-		<p:accordionPanel styleClass="menu-sigapf"
-			activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu">
-			<p:ajax event="tabChange" listener="#{sessionBean.menuTabChange}"
-				global="false" immediate="true" />
-
-			<p:tab title="Cadastros Básicos" id="cadastros-tab">
-
-				<p:menu>
-					<sec:authorize access="hasAnyRole('ADM', 'APF', 'GPF', 'AUD')">
-						<p:menuitem icon="fa fa-th-large" value="Página Inicial"
-							id="menu-principal" url="/principal/" />
-					</sec:authorize>
-
-					<sec:authorize access="hasAnyRole('ADM')">
-						<p:menuitem icon="fa fa-user" value="Usuários" id="menu-usuarios"
-							url="/cadastro/usuario/" />
-					</sec:authorize>
-
-					<sec:authorize access="hasAnyRole('APF', 'GPF')">
-						<p:menuitem icon="fa fa-briefcase" value="Projetos"
-							id="menu-projetos" url="/cadastro/projeto/" />
-						<p:menuitem icon="fa fa-book" value="Contratos"
-							id="menu-contratos" url="/cadastro/contrato/" />
-						<p:menuitem icon="fa fa-paste" value="Ordens de Serviço"
-							id="menu-ordens" url="/cadastro/os/" />
-					</sec:authorize>
-
-
-				</p:menu>
-
-			</p:tab>
-
-			<sec:authorize access="hasAnyRole('APF', 'GPF')">
-
-				<p:tab title="Planilha" id="planilha-tab">
-
+		<p:accordionPanel styleClass="menu-sigapf" activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu">
+			<p:ajax event="tabChange" listener="#{sessionBean.menuTabChange}" global="false" immediate="true" />
+				
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN')" >
+				<p:tab title="Administração" id="cadastros-adm" >
 					<p:menu>
-						<p:menuitem icon="fa fa-edit" value="Nova Planilha"
-							id="nova-contagem" url="/contagem/planilha/novo" />
-						<p:menuitem icon="fa fa-table" value="Criadas"
-							id="criada-contagem" url="/contagem/planilha/criada/" />
-						<p:menuitem icon="fa fa-folder-open" value="Em Revisão"
-							id="em-revisao-contagem" url="/contagem/planilha/em-revisao/" />
-						<p:menuitem icon="fa fa-folder" value="Revisadas"
-							id="revisada-contagem" url="/contagem/planilha/revisada/" />
-						<p:menuitem icon="fa fa-folder-open-o" value="Em Aprovação"
-							id="em-aprovacao-contagem" url="/contagem/planilha/em-aprovacao/" />
-						<p:menuitem icon="fa fa-folder-o" value="Aprovadas"
-							id="aprovada-contagem" url="/contagem/planilha/aprovada/" />
-						<p:menuitem icon="fa fa-ban" value="Invalidadas"
-							id="invalidada-contagem" url="/contagem/planilha/invalidada/" />
-						<p:menuitem icon="fa fa-list" value="Todas as Planilhas"
-							id="todas-contagem" url="/contagem/planilha/" />
+							<p:menuitem value="Cadastro de Usuário" id="menu-adm" url="/administracao/cadastro/usuario/" />
 					</p:menu>
-
 				</p:tab>
-
 			</sec:authorize>
-
-			<sec:authorize access="hasAnyRole('APF', 'GPF')">
-
-				<p:tab title="Ajuda" id="ajuda-tab">
-
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_FUNC')" >
+				<p:tab title="Encomenda" id="cadastros-tab" >
 					<p:menu>
-						<p:menuitem icon="fa fa-columns" value="IFPUG" id="menu-ifpug"
-							onclick="window.open('http://www.ifpug.org/','_blank');"
-							target="_blank" />
-						<p:menuitem icon="fa fa-columns" value="NESMA" id="menu-nesma"
-							onclick="window.open('http://nesma.org/','_blank');"
-							target="_blank" />
-						<p:menuitem icon="fa fa-columns" value="SISP" id="menu-sisp"
-							onclick="window.open('http://www.sisp.gov.br/','_blank');"
-							target="_blank" />
-						<p:menuitem icon="fa fa-laptop" value="Sobre o Sistema"
-							id="menu-sobre" url="/sobre/" />
+							<p:menuitem value="Cadastro de Encomenda" id="menu-principal" url="/localizador/" />
 					</p:menu>
-
 				</p:tab>
-
 			</sec:authorize>
-
 		</p:accordionPanel>
 
 	</h:form>
