@@ -27,7 +27,7 @@
 
 			<div class="vgap-10"></div>
 
-			<p:dataTable value="#{cadastroUsuarioListaBean.usuarios}"
+			<p:dataTable value="#{cadastroUsuarioListaView.usuarios}"
 				var="usuario" emptyMessage="#{msgs.no_records_found}">
 
 				<p:column headerText="Login" filterBy="#{usuario.login}"
@@ -86,7 +86,7 @@
 						icon="fa #{usuario.ativo ? 'fa-times text-error' : 'fa-check text-success'}"
 						title="#{usuario.ativo ? 'Desativar' : 'Ativar'}"
 						styleClass="btn btn-link"
-						action="#{cadastroUsuarioListaBean.selecionarUsuario(usuario)}"
+						action="#{cadastroUsuarioListaView.selecionarUsuario(usuario)}"
 						update=":dialog-status-form @form" />
 				</p:column>
 
@@ -100,15 +100,15 @@
 			widgetVar="mudarStatusUsuarioDialog" modal="true" resizable="false">
 			<h:form id="dialog-status-form">
 				<h:outputText
-					value="Tem certeza que deseja #{cadastroUsuarioListaBean.usuario.ativo ? 'desativar' : 'ativar'} 
-          o usuário #{cadastroUsuarioListaBean.usuario.idPatente.sigla} #{cadastroUsuarioListaBean.usuario.nomeGuerra} ?" />
+					value="Tem certeza que deseja #{cadastroUsuarioListaView.usuario.ativo ? 'desativar' : 'ativar'} 
+          o usuário #{cadastroUsuarioListaView.usuario.idPatente.sigla} #{cadastroUsuarioListaView.usuario.nomeGuerra} ?" />
 
 				<div class="vgap-30"></div>
 
 				<h:panelGroup styleClass="dialog-footer" layout="block">
 					<p:commandButton value="Sim" styleClass="btn btn-success"
 						id="confirmar"
-						action="#{cadastroUsuarioListaBean.mudarStatusAtivoUsuario}"
+						action="#{cadastroUsuarioListaView.mudarStatusAtivoUsuario}"
 						update=":formulario-usuario-lista"
 						onclick="PF('mudarStatusUsuarioDialog').hide()" />
 					<p:commandButton value="Cancelar" id="cancelar" styleClass="btn margin-l-5"
