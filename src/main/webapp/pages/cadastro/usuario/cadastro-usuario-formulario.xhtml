@@ -29,7 +29,7 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							value="#{cadastroUsuarioFormularioBean.usuario.nomeCompleto}"
+							value="#{cadastroUsuarioFormularioView.usuario.nomeCompleto}"
 							id="nomeCompleto" size="26" />
 					</p:column>
 				</p:row>
@@ -40,7 +40,7 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							value="#{cadastroUsuarioFormularioBean.usuario.email}" id="email"
+							value="#{cadastroUsuarioFormularioView.usuario.email}" id="email"
 							size="26" />
 					</p:column>
 				</p:row>
@@ -51,7 +51,7 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							value="#{cadastroUsuarioFormularioBean.usuario.nomeGuerra}"
+							value="#{cadastroUsuarioFormularioView.usuario.nomeGuerra}"
 							id="nomeGuerra" size="26" />
 					</p:column>
 				</p:row>
@@ -62,10 +62,10 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioBean.usuario.idPatente}"
+							value="#{cadastroUsuarioFormularioView.usuario.idPatente}"
 							converter="jsonConverter">
 							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.patentes}"
+							<f:selectItems value="#{cadastroUsuarioFormularioView.patentes}"
 								id="patente" var="patente" itemLabel="#{patente.sigla}"
 								itemValue="#{patente}" />
 						</p:selectOneMenu>
@@ -79,10 +79,10 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioBean.usuario.idQuadro}"
+							value="#{cadastroUsuarioFormularioView.usuario.idQuadro}"
 							converter="jsonConverter">
 							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.quadros}"
+							<f:selectItems value="#{cadastroUsuarioFormularioView.quadros}"
 								id="quadro" var="quadro" itemLabel="#{quadro.sigla}"
 								itemValue="#{quadro}" />
 						</p:selectOneMenu>
@@ -96,11 +96,11 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioBean.usuario.idEspecialidade}"
+							value="#{cadastroUsuarioFormularioView.usuario.idEspecialidade}"
 							converter="jsonConverter">
 							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
 							<f:selectItems
-								value="#{cadastroUsuarioFormularioBean.especialidades}"
+								value="#{cadastroUsuarioFormularioView.especialidades}"
 								id="especialidade" var="especialidade"
 								itemLabel="#{especialidade.sigla}" itemValue="#{especialidade}" />
 						</p:selectOneMenu>
@@ -114,23 +114,23 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							rendered="#{cadastroUsuarioFormularioBean.usuario.id == null}"
-							value="#{cadastroUsuarioFormularioBean.usuario.login}" size="26"
+							rendered="#{cadastroUsuarioFormularioView.usuario.id == null}"
+							value="#{cadastroUsuarioFormularioView.usuario.login}" size="26"
 							required="true" id="login" />
 						<h:outputText styleClass="text-align: left;"
-							rendered="#{cadastroUsuarioFormularioBean.usuario.id != null}"
-							value="#{cadastroUsuarioFormularioBean.usuario.login}" />
+							rendered="#{cadastroUsuarioFormularioView.usuario.id != null}"
+							value="#{cadastroUsuarioFormularioView.usuario.login}" />
 					</p:column>
 				</p:row>
 
 				<p:row
-					rendered="#{cadastroUsuarioFormularioBean.usuario.id != null}">
+					rendered="#{cadastroUsuarioFormularioView.usuario.id != null}">
 					<p:column>
 						<p:outputLabel value="Ativo:" for="ativo" />
 					</p:column>
 					<p:column>
 						<p:selectBooleanCheckbox
-							value="#{cadastroUsuarioFormularioBean.usuario.ativo}" id="ativo"
+							value="#{cadastroUsuarioFormularioView.usuario.ativo}" id="ativo"
 							disabled="true" />
 					</p:column>
 				</p:row>
@@ -141,11 +141,11 @@
 					</p:column>
 					<p:column>
 						<p:selectManyCheckbox required="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.perfis}"
+							value="#{cadastroUsuarioFormularioView.usuario.perfis}"
 							id="perfis" columns="1" layout="grid"
 							converter="genericEnumConverter">
 							<f:attribute name="collectionType" value="java.util.HashSet" />
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.perfis}"
+							<f:selectItems value="#{cadastroUsuarioFormularioView.perfis}"
 								var="perfil" itemLabel="#{perfil.label}" id="name" />
 						</p:selectManyCheckbox>
 					</p:column>
@@ -156,16 +156,16 @@
 			<div class="vgap-30"></div>
 
 			<p:commandButton
-				styleClass="#{cadastroUsuarioFormularioBean.usuario.id == null ? 'btn btn-success' : 'btn'}"
-				action="#{cadastroUsuarioFormularioBean.salvar}" value=" Salvar"
+				styleClass="#{cadastroUsuarioFormularioView.usuario.id == null ? 'btn btn-success' : 'btn'}"
+				action="#{cadastroUsuarioFormularioView.salvar}" value=" Salvar"
 				id="salvar" update=":formulario-projeto @form" icon="fa fa-save"
 				validateClient="true" />
 
 			<p:commandButton value="Resetar senha" id="resetarSenha"
 				icon="fa fa-refresh" update="msgs"
 				styleClass="btn btn-success margin-l-5"
-				rendered="#{cadastroUsuarioFormularioBean.usuario.id != null}"
-				action="#{cadastroUsuarioFormularioBean.resetarSenha}" />
+				rendered="#{cadastroUsuarioFormularioView.usuario.id != null}"
+				action="#{cadastroUsuarioFormularioView.resetarSenha}" />
 
 			<a href="../usuario/" id="voltar" class="btn">Voltar</a>
 
