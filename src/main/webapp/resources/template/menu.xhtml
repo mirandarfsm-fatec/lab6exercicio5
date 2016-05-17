@@ -11,17 +11,17 @@
 
 	<h:form id="form-menu" prependId="false">
 
-		<p:accordionPanel styleClass="menu-sigapf" activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_ADMIN')}">
+		<p:accordionPanel styleClass="menu-sigapf" activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
 			<p:ajax event="tabChange" listener="#{sessionBean.menuTabChange}" global="false" immediate="true" />
 
-			<p:tab title="Administração" id="cadastros-adm" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+			<p:tab title="Administração" id="cadastros-adm" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
 				<p:menu>
 						<p:menuitem value="Cadastro de Usuário" id="menu-adm" url="/administracao/cadastro/usuario/" />
 				</p:menu>
 			</p:tab>
-			<p:tab title="Encomenda" id="cadastros-tab" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_ADMIN')}">
+			<p:tab title="Encomenda" id="cadastros-tab" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
 				<p:menu>
-						<p:menuitem value="Cadastro de Encomenda" id="menu-principal" url="/localizador/" />
+						<p:menuitem value="Cadastro de Encomenda" id="menu-principal" url="/administracao/cadastro/encomenda/" />
 				</p:menu>
 			</p:tab>
 		</p:accordionPanel>

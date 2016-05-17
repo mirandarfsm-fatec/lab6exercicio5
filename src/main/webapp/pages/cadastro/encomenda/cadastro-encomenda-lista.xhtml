@@ -11,14 +11,14 @@
 
 	<ui:define name="main">
 
-		<h3>Lista de Usuários</h3>
+		<h3>Lista de Encomendas</h3>
 
 		<p:separator></p:separator>
 
-		<h:form id="formulario-usuario-lista">
+		<h:form id="formulario-encomenda-lista">
 
-			<a id="criar" class="btn btn-success" href="../usuario/novo"> <span
-				class="fa fa-plus-square"></span> <span>Criar novo Usuário</span>
+			<a id="criar" class="btn btn-success" href="../encomenda/novo"> <span
+				class="fa fa-plus-square"></span> <span>Criar nova Encomenda</span>
 			</a>
 
 			<div class="vgap-10"></div>
@@ -27,66 +27,49 @@
 
 			<div class="vgap-10"></div>
 
-			<p:dataTable value="#{cadastroUsuarioListaBean.usuarios}"
-				var="usuario" emptyMessage="#{msgs.no_records_found}">
+			<p:dataTable value="#{cadastroEncomendaListaView.encomendas}"
+				var="encomenda" emptyMessage="#{msgs.no_records_found}">
 
-				<p:column headerText="Login" filterBy="#{usuario.login}"
-					filterMatchMode="contains" width="100" styleClass="text-center">
-		  				#{usuario.login}
+				<p:column headerText="Cód. Localizador"
+					filterBy="#{encomenda.localizador}" filterMatchMode="contains"
+					width="100" styleClass="text-center">
+		  				#{encomenda.localizador}
 		  			</p:column>
 
-				<p:column id="ativo" headerText="Ativo" width="50"
+				<p:column headerText="Responsável" width="150"
 					styleClass="text-center">
-							#{usuario.ativo ? 'Sim' : 'Não'}
-					</p:column>
-
-				<p:column headerText="Patente" width="50" styleClass="text-center">
-	  					#{usuario.idPatente.sigla}
+	  					#{encomenda.responsavel}
 	  				</p:column>
 
-				<p:column headerText="Quadro" width="50" styleClass="text-center">
-	  					#{usuario.idQuadro.sigla}
+				<p:column headerText="Telefone" width="100" styleClass="text-center">
+	  					#{encomenda.telefone}
 	  				</p:column>
 
-				<p:column headerText="Especialidade" width="90"
-					styleClass="text-center">
-	  					#{usuario.idEspecialidade.sigla}
-	  				</p:column>
-
-				<p:column headerText="Nome de Guerra" width="100"
-					styleClass="text-center">
-	  					#{usuario.nomeGuerra}
-	  				</p:column>
-
-				<p:column headerText="Nome Completo" styleClass="text-center">
-	  					#{usuario.nomeCompleto}
-  				</p:column>
-
-				<p:column headerText="Email" styleClass="text-center" width="180">
-	  					#{usuario.email}
+				<p:column headerText="Email" styleClass="text-center" width="150">
+	  					#{encomenda.email}
   				</p:column>
 
 				<p:column width="40" styleClass="text-center">
-					<a href="../usuario/detalhes/#{usuario.id}" id="visualiza"
+					<a href="../encomenda/detalhes/#{encomenda.id}" id="visualiza"
 						class="btn" title="Visualizar Detalhes"> <span
-						class="fa fa-search"></span> <f:param value="#{usuario.id}"
+						class="fa fa-search"></span> <f:param value="#{encomenda.id}"
 							name="id"></f:param>
 					</a>
 				</p:column>
 
 				<p:column width="40" styleClass="text-center">
-					<a href="../usuario/#{usuario.id}" id="altera" class="btn"
+					<a href="../encomenda/#{encomenda.id}" id="altera" class="btn"
 						title="Editar"> <span class="fa fa-pencil"></span> <f:param
-							value="#{usuario.id}" name="id"></f:param>
+							value="#{encomenda.id}" name="id"></f:param>
 					</a>
 				</p:column>
 
 				<p:column id="btn-ativo" width="40" styleClass="text-center">
 					<p:commandButton id="ativar-desativar"
-						icon="fa #{usuario.ativo ? 'fa-times text-error' : 'fa-check text-success'}"
-						title="#{usuario.ativo ? 'Desativar' : 'Ativar'}"
+						icon="fa #{encomenda.ativo ? 'fa-times text-error' : 'fa-check text-success'}"
+						title="#{encomenda.ativo ? 'Desativar' : 'Ativar'}"
 						styleClass="btn btn-link"
-						action="#{cadastroUsuarioListaBean.selecionarUsuario(usuario)}"
+						action="#{cadastroEncomendaListaView.selecionarEncomenda(encomenda)}"
 						update=":dialog-status-form @form" />
 				</p:column>
 
@@ -96,23 +79,24 @@
 
 	<ui:define name="dialogs">
 
-		<p:dialog header="Atenção!" id="mudar-status-usuario-dialog"
-			widgetVar="mudarStatusUsuarioDialog" modal="true" resizable="false">
+		<p:dialog header="Atenção!" id="mudar-status-encomenda-dialog"
+			widgetVar="mudarStatusEncomendaDialog" modal="true" resizable="false">
 			<h:form id="dialog-status-form">
 				<h:outputText
-					value="Tem certeza que deseja #{cadastroUsuarioListaBean.usuario.ativo ? 'desativar' : 'ativar'} 
-          o usuário #{cadastroUsuarioListaBean.usuario.idPatente.sigla} #{cadastroUsuarioListaBean.usuario.nomeGuerra} ?" />
+					value="Tem certeza que deseja #{cadastroEncomendaListaView.encomenda.ativo ? 'desativar' : 'ativar'} 
+          a encomenda de código localizador: #{cadastroEncomendaListaView.encomenda.localizador} ?" />
 
 				<div class="vgap-30"></div>
 
 				<h:panelGroup styleClass="dialog-footer" layout="block">
 					<p:commandButton value="Sim" styleClass="btn btn-success"
 						id="confirmar"
-						action="#{cadastroUsuarioListaBean.mudarStatusAtivoUsuario}"
-						update=":formulario-usuario-lista"
-						onclick="PF('mudarStatusUsuarioDialog').hide()" />
-					<p:commandButton value="Cancelar" id="cancelar" styleClass="btn margin-l-5"
-						type="button" onclick="PF('mudarStatusUsuarioDialog').hide()" />
+						action="#{cadastroEncomendaListaView.mudarStatusAtivoEncomenda}"
+						update=":formulario-encomenda-lista"
+						onclick="PF('mudarStatusEncomendaDialog').hide()" />
+					<p:commandButton value="Cancelar" id="cancelar"
+						styleClass="btn margin-l-5" type="button"
+						onclick="PF('mudarStatusEncomendaDialog').hide()" />
 				</h:panelGroup>
 
 			</h:form>

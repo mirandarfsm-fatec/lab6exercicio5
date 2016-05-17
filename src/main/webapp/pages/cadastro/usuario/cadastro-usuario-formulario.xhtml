@@ -25,87 +25,13 @@
 
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Nome Completo:" for="nomeCompleto" />
+						<p:outputLabel value="Nome Completo:" for="nome" />
 					</p:column>
 					<p:column>
 						<p:inputText
-							value="#{cadastroUsuarioFormularioView.usuario.nomeCompleto}"
-							id="nomeCompleto" size="26" />
+							value="#{cadastroUsuarioForm.usuario.nome}"
+							id="nome" size="26" />
 					</p:column>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Email:" for="email" />
-					</p:column>
-					<p:column>
-						<p:inputText
-							value="#{cadastroUsuarioFormularioView.usuario.email}" id="email"
-							size="26" />
-					</p:column>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Nome de Guerra:" for="nomeGuerra" />
-					</p:column>
-					<p:column>
-						<p:inputText
-							value="#{cadastroUsuarioFormularioView.usuario.nomeGuerra}"
-							id="nomeGuerra" size="26" />
-					</p:column>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Patente:" for="patente" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioView.usuario.idPatente}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioView.patentes}"
-								id="patente" var="patente" itemLabel="#{patente.sigla}"
-								itemValue="#{patente}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Quadro:" for="quadro" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioView.usuario.idQuadro}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioView.quadros}"
-								id="quadro" var="quadro" itemLabel="#{quadro.sigla}"
-								itemValue="#{quadro}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Especialidade:" for="especialidade" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu
-							value="#{cadastroUsuarioFormularioView.usuario.idEspecialidade}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems
-								value="#{cadastroUsuarioFormularioView.especialidades}"
-								id="especialidade" var="especialidade"
-								itemLabel="#{especialidade.sigla}" itemValue="#{especialidade}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
 				</p:row>
 
 				<p:row>
@@ -114,23 +40,23 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							rendered="#{cadastroUsuarioFormularioView.usuario.id == null}"
-							value="#{cadastroUsuarioFormularioView.usuario.login}" size="26"
+							rendered="#{cadastroUsuarioForm.usuario.id == null}"
+							value="#{cadastroUsuarioForm.usuario.login}" size="26"
 							required="true" id="login" />
 						<h:outputText styleClass="text-align: left;"
-							rendered="#{cadastroUsuarioFormularioView.usuario.id != null}"
-							value="#{cadastroUsuarioFormularioView.usuario.login}" />
+							rendered="#{cadastroUsuarioForm.usuario.id != null}"
+							value="#{cadastroUsuarioForm.usuario.login}" />
 					</p:column>
 				</p:row>
 
 				<p:row
-					rendered="#{cadastroUsuarioFormularioView.usuario.id != null}">
+					rendered="#{cadastroUsuarioForm.usuario.id != null}">
 					<p:column>
 						<p:outputLabel value="Ativo:" for="ativo" />
 					</p:column>
 					<p:column>
 						<p:selectBooleanCheckbox
-							value="#{cadastroUsuarioFormularioView.usuario.ativo}" id="ativo"
+							value="#{cadastroUsuarioForm.usuario.ativo}" id="ativo"
 							disabled="true" />
 					</p:column>
 				</p:row>
@@ -141,11 +67,11 @@
 					</p:column>
 					<p:column>
 						<p:selectManyCheckbox required="true"
-							value="#{cadastroUsuarioFormularioView.usuario.perfis}"
+							value="#{cadastroUsuarioForm.usuario.perfis}"
 							id="perfis" columns="1" layout="grid"
 							converter="genericEnumConverter">
 							<f:attribute name="collectionType" value="java.util.HashSet" />
-							<f:selectItems value="#{cadastroUsuarioFormularioView.perfis}"
+							<f:selectItems value="#{cadastroUsuarioForm.perfis}"
 								var="perfil" itemLabel="#{perfil.label}" id="name" />
 						</p:selectManyCheckbox>
 					</p:column>
@@ -156,16 +82,16 @@
 			<div class="vgap-30"></div>
 
 			<p:commandButton
-				styleClass="#{cadastroUsuarioFormularioView.usuario.id == null ? 'btn btn-success' : 'btn'}"
-				action="#{cadastroUsuarioFormularioView.salvar}" value=" Salvar"
+				styleClass="#{cadastroUsuarioForm.usuario.id == null ? 'btn btn-success' : 'btn'}"
+				action="#{cadastroUsuarioForm.salvar}" value=" Salvar"
 				id="salvar" update=":formulario-projeto @form" icon="fa fa-save"
 				validateClient="true" />
 
 			<p:commandButton value="Resetar senha" id="resetarSenha"
 				icon="fa fa-refresh" update="msgs"
 				styleClass="btn btn-success margin-l-5"
-				rendered="#{cadastroUsuarioFormularioView.usuario.id != null}"
-				action="#{cadastroUsuarioFormularioView.resetarSenha}" />
+				rendered="#{cadastroUsuarioForm.usuario.id != null}"
+				action="#{cadastroUsuarioForm.resetarSenha}" />
 
 			<a href="../usuario/" id="voltar" class="btn">Voltar</a>
 

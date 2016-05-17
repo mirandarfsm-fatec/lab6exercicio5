@@ -1,11 +1,16 @@
 package br.gov.sp.fatec.sisgenc.view.cadastro.usuario;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.gov.sp.fatec.sisgenc.domain.Perfil;
 import br.gov.sp.fatec.sisgenc.domain.Usuario;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
@@ -19,16 +24,19 @@ public class CadastroUsuarioFormView {
 	private UsuarioRepository usuarioRepository;
 
 	private Usuario usuario;
+	private List<Perfil> perfis;
 
 	@PostConstruct
 	public void init() {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
 		setUsuario("novo".equals(id) ? new Usuario() : usuarioRepository
 				.findOne(Long.valueOf(id)));
+		setPerfis(new ArrayList<Perfil>(Arrays.asList(Perfil.values())));
+		getPerfis().remove(Perfil.ROLE_USER);
 	}
 
 	public void salvar() {
-		usuarioRepository.save(getUsuario());
+		usuarioRepository.save(usuario);
 		Mensagem.informacao("Usuario salvo com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/usuario/");
 	}
@@ -39,6 +47,14 @@ public class CadastroUsuarioFormView {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 
 }

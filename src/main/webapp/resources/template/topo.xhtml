@@ -6,22 +6,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 	<div class="row-fluid">
 		<div class="span12 topo text-right">
 			<h:form>
-				<span>Olá,
-					#{authenticationContext.usuarioLogado.nome}.</span>
-				<p:commandButton styleClass="btn btn-link" icon="fa fa-user"
-					action="#{authenticationContext.acessarMeuPerfil}"
-					value="Meu Perfil">
-				</p:commandButton>
+				<span>Olá, #{authenticationContext.usuarioLogado.nome}.</span>
 				<p:commandButton styleClass="btn btn-link" icon="fa fa-sign-out"
-					action="#{authenticationContext.logout}"
-					value="Sair" />
-<!-- 				<h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout" > -->
-<!-- 					<h:outputText styleClass="btn btn-link" icon="fa fa-sign-out" value="Sair" /> -->
-<!-- 				</h:outputLink> -->
+					action="#{authenticationContext.logout}" value="Sair" />
 			</h:form>
 		</div>
 	</div>

@@ -37,29 +37,11 @@
 
 				<p:column id="ativo" headerText="Ativo" width="50"
 					styleClass="text-center">
-							#{usuario.ativo ? 'Sim' : 'Não'}
+						#{usuario.ativo ? 'Sim' : 'Não'}
 					</p:column>
 
-				<p:column headerText="Patente" width="50" styleClass="text-center">
-	  					#{usuario.idPatente.sigla}
-	  				</p:column>
-
-				<p:column headerText="Quadro" width="50" styleClass="text-center">
-	  					#{usuario.idQuadro.sigla}
-	  				</p:column>
-
-				<p:column headerText="Especialidade" width="90"
-					styleClass="text-center">
-	  					#{usuario.idEspecialidade.sigla}
-	  				</p:column>
-
-				<p:column headerText="Nome de Guerra" width="100"
-					styleClass="text-center">
-	  					#{usuario.nomeGuerra}
-	  				</p:column>
-
 				<p:column headerText="Nome Completo" styleClass="text-center">
-	  					#{usuario.nomeCompleto}
+	  					#{usuario.nome}
   				</p:column>
 
 				<p:column headerText="Email" styleClass="text-center" width="180">
@@ -101,7 +83,7 @@
 			<h:form id="dialog-status-form">
 				<h:outputText
 					value="Tem certeza que deseja #{cadastroUsuarioListaView.usuario.ativo ? 'desativar' : 'ativar'} 
-          o usuário #{cadastroUsuarioListaView.usuario.idPatente.sigla} #{cadastroUsuarioListaView.usuario.nomeGuerra} ?" />
+          o usuário #{cadastroUsuarioListaView.usuario.login} ?" />
 
 				<div class="vgap-30"></div>
 
@@ -111,8 +93,9 @@
 						action="#{cadastroUsuarioListaView.mudarStatusAtivoUsuario}"
 						update=":formulario-usuario-lista"
 						onclick="PF('mudarStatusUsuarioDialog').hide()" />
-					<p:commandButton value="Cancelar" id="cancelar" styleClass="btn margin-l-5"
-						type="button" onclick="PF('mudarStatusUsuarioDialog').hide()" />
+					<p:commandButton value="Cancelar" id="cancelar"
+						styleClass="btn margin-l-5" type="button"
+						onclick="PF('mudarStatusUsuarioDialog').hide()" />
 				</h:panelGroup>
 
 			</h:form>

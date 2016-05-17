@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	<url-mapping id="loginn">
+	<url-mapping id="barra">
 		<pattern value="/" />
 		<view-id value="/pages/login/login.jsf" />
 	</url-mapping>
@@ -17,6 +17,11 @@
 	<url-mapping id="home">
 		<pattern value="/home/" />
 		<view-id value="/pages/principal/index.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="perfil">
+		<pattern value="/perfil/" />
+		<view-id value="/pages/perfil/perfil.jsf" />
 	</url-mapping>
 
 	<url-mapping id="localizador">
@@ -39,19 +44,19 @@
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-detalhes.jsf" />
 	</url-mapping>
 
-	<url-mapping id="cadastro-encaminhamento-lista">
-		<pattern value="/administracao/cadastro/encaminhamento/" />
-		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-lista.jsf" />
+	<url-mapping id="cadastro-encomenda-lista">
+		<pattern value="/administracao/cadastro/encomenda/" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista.jsf" />
 	</url-mapping>
 
-	<url-mapping id="cadastro-encaminhamento-form">
-		<pattern value="/administracao/cadastro/encaminhamento/#{id}" />
-		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-formulario.jsf" />
+	<url-mapping id="cadastro-encomenda-form">
+		<pattern value="/administracao/cadastro/encomenda/#{id}" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-formulario.jsf" />
 	</url-mapping>
 
-	<url-mapping id="cadastro-encaminhamento-detalhes">
-		<pattern value="/administracao/cadastro/encaminhamento/#{id}/detalhes" />
-		<view-id value="/pages/cadastro/encaminhamento/cadastro-encaminhamento-detalhes.jsf" />
+	<url-mapping id="cadastro-encomenda-detalhes">
+		<pattern value="/administracao/cadastro/encomenda/#{id}/detalhes" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-detalhes.jsf" />
 	</url-mapping>
 
 </pretty-config>

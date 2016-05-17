@@ -25,12 +25,12 @@
 
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Nome Completo:" for="nomeCompleto" />
+						<p:outputLabel value="Nome Completo:" for="nome" />
 					</p:column>
 					<p:column>
 						<h:outputText
-							value="#{cadastroUsuarioFormularioBean.usuario.nomeCompleto}"
-							id="nomeCompleto" />
+							value="#{cadastroUsuarioForm.usuario.nome}"
+							id="nome" />
 					</p:column>
 				</p:row>
 
@@ -39,73 +39,9 @@
 						<p:outputLabel value="Email:" for="email" />
 					</p:column>
 					<p:column>
-						<h:outputText
-							value="#{cadastroUsuarioFormularioBean.usuario.email}"
+						<h:outputText value="#{cadastroUsuarioForm.usuario.email}"
 							id="email" size="40" />
 					</p:column>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Nome de Guerra:" for="nomeGuerra" />
-					</p:column>
-					<p:column>
-						<h:outputText
-							value="#{cadastroUsuarioFormularioBean.usuario.nomeGuerra}"
-							id="nomeGuerra" size="26" />
-					</p:column>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Patente:" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu disabled="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.idPatente}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.patentes}"
-								id="patente" var="patente" itemLabel="#{patente.sigla}"
-								itemValue="#{patente}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Quadro:" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu disabled="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.idQuadro}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.quadros}"
-								id="quadro" var="quadro" itemLabel="#{quadro.sigla}"
-								itemValue="#{quadro}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
-				</p:row>
-
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Especialidade:" />
-					</p:column>
-					<p:column>
-						<p:selectOneMenu disabled="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.idEspecialidade}"
-							converter="jsonConverter">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true"></f:selectItem>
-							<f:selectItems
-								value="#{cadastroUsuarioFormularioBean.especialidades}"
-								id="especialidade" var="especialidade"
-								itemLabel="#{especialidade.sigla}" itemValue="#{especialidade}" />
-						</p:selectOneMenu>
-					</p:column>
-					<div class="vgap-10"></div>
 				</p:row>
 
 				<p:row>
@@ -114,7 +50,7 @@
 					</p:column>
 					<p:column>
 						<h:outputText styleClass="text-align: left;"
-							value="#{cadastroUsuarioFormularioBean.usuario.login}" />
+							value="#{cadastroUsuarioForm.usuario.login}" />
 					</p:column>
 				</p:row>
 
@@ -124,7 +60,7 @@
 					</p:column>
 					<p:column>
 						<p:selectBooleanCheckbox disabled="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.ativo}" id="ativo" />
+							value="#{cadastroUsuarioForm.usuario.ativo}" id="ativo" />
 					</p:column>
 				</p:row>
 
@@ -134,11 +70,10 @@
 					</p:column>
 					<p:column>
 						<p:selectManyCheckbox disabled="true" required="true"
-							value="#{cadastroUsuarioFormularioBean.usuario.perfis}"
-							id="perfis" columns="1" layout="grid"
-							converter="genericEnumConverter">
+							value="#{cadastroUsuarioForm.usuario.perfis}" id="perfis"
+							columns="1" layout="grid" converter="genericEnumConverter">
 							<f:attribute name="collectionType" value="java.util.HashSet" />
-							<f:selectItems value="#{cadastroUsuarioFormularioBean.perfis}"
+							<f:selectItems value="#{cadastroUsuarioForm.perfis}"
 								var="perfil" itemLabel="#{perfil.label}" id="name" />
 						</p:selectManyCheckbox>
 					</p:column>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>SISGENC - <ui:insert name="html-title" /></title>
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/vendor/css/bootstrap.css?v=#{versaoInterna}" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/vendor/css/bootstrap-responsive.css?v=#{versaoInterna}" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/vendor/css/font-awesome.css?v=#{versaoInterna}" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/correcoes.css?v=#{versaoInterna}" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/estrutura.css?v=#{versaoInterna}" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/gaps.css?v=#{versaoInterna}" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/resources/imagens/sisgenc.png" />
+	<ui:insert name="html-head" />
+</h:head>
+
+<h:body styleClass="localizador">
+
+	<div class="container-fluid">
+		<ui:insert name="main" />
+	</div>
+
+</h:body>
+</html>

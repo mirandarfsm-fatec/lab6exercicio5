@@ -7,7 +7,7 @@
 	xmlns:pt="http://java.sun.com/jsf/passthrough">
 
 <h:head>
-	<title>SIGAPF</title>
+	<title>SISGENC</title>
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/vendor/css/bootstrap.css?v=#{versaoInterna}" />
 	<link rel="stylesheet" type="text/css"
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/css/gaps.css?v=#{versaoInterna}" />
 	<link rel="shortcut icon" type="image/x-icon"
-		href="#{request.contextPath}/resources/imagens/favicon.ico" />
+		href="#{request.contextPath}/resources/imagens/sisgenc.png" />
 	<script>
 		$(document).ready(function() {
 			$('#j_username').focus()
@@ -36,7 +36,9 @@
 						action='#{request.contextPath}/j_spring_security_check'
 						method="post">
 						<h:panelGrid style="margin: 30px auto 15px auto">
-							<h1>SGEncomendas</h1>
+							<h1>SISGENC</h1>
+							<img src="#{request.contextPath}/resources/imagens/sisgenc.jpg"
+								width="150" height="150"></img>
 						</h:panelGrid>
 						<h:panelGrid style="margin: 30px auto 15px auto">
 							<h:panelGroup styleClass="inner-addon left-addon">
@@ -65,8 +67,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="vgap-5"></div>
-	<label class="text-center"><a  href="${request.contextPath}/localizador/"> Localize sua encomenda! </a></label>
-	
+	<div class="vgap-10"></div>
+	<label class="text-center"><a
+		href="${request.contextPath}/localizador/"> Localize sua
+			encomenda! </a></label>
+
 </h:body>
 </html>

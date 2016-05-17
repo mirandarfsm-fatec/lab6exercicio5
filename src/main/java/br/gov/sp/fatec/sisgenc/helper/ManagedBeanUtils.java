@@ -6,7 +6,12 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.primefaces.context.RequestContext;
+
 public class ManagedBeanUtils {
+
+	private static final String PF_DIALOG_FUNCTION = "PF(':nome')";
+
 	public static String obterParametroRequest(String parameter) {
 		HttpServletRequest req = (HttpServletRequest) FacesContext
 				.getCurrentInstance().getExternalContext().getRequest();
@@ -22,5 +27,17 @@ public class ManagedBeanUtils {
 		} catch (IOException e) {
 			throw new RuntimeException(e.getMessage());
 		}
+	}
+
+	public static void showDialog(String nome) {
+		String function = PF_DIALOG_FUNCTION + ".show()";
+		RequestContext.getCurrentInstance().execute(
+				function.replace(":nome", nome));
+	}
+
+	public static void hideDialog(String nome) {
+		String function = PF_DIALOG_FUNCTION + ".hide()";
+		RequestContext.getCurrentInstance().execute(
+				function.replace(":nome", nome));
 	}
 }
