@@ -12,8 +12,8 @@ public class EncomendaService {
 
 	@Autowired
 	private EncomendaRepository encomendaRepository;
-	
-	public String generateHashLocalizator(){
+
+	public String generateHashLocalizator() {
 		return RandomStringUtils.randomAlphanumeric(17).toUpperCase();
 	}
 
@@ -31,8 +31,13 @@ public class EncomendaService {
 	}
 
 	public Encomenda save(Encomenda encomenda) {
-		String localizador = encomenda.getLocalizador() == null ? generateHashLocalizator() : encomenda.getLocalizador();
+		String localizador = encomenda.getLocalizador() == null ? generateHashLocalizator()
+				: encomenda.getLocalizador();
 		encomenda.setLocalizador(localizador);
 		return encomendaRepository.save(encomenda);
+	}
+
+	public Encomenda findByLocalizador(String localizador) {
+		return encomendaRepository.findByLocalizador(localizador);
 	}
 }

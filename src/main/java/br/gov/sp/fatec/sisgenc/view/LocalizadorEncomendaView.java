@@ -1,25 +1,24 @@
 package br.gov.sp.fatec.sisgenc.view;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
-import br.gov.sp.fatec.sisgenc.repository.EncomendaRepository;
+import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
 @ManagedBean(name = "localizadorEncomendaView")
 @SessionScoped
 public class LocalizadorEncomendaView {
 
-	@Autowired
-	private EncomendaRepository encomendaRepository;
+	@ManagedProperty(value = "#{encomendaService}")
+	private EncomendaService encomendaService;
 
 	private Encomenda encomenda;
 	private String localizador;
 
 	public void localizarEncomenda() {
-		encomenda = encomendaRepository.findByLocalizador(localizador);
+		encomenda = encomendaService.findByLocalizador(localizador);
 	}
 
 	public Encomenda getEncomenda() {
