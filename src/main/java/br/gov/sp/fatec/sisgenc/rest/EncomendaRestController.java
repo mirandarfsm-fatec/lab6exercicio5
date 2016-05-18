@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
-import br.gov.sp.fatec.sisgenc.helper.RestUtil;
 import br.gov.sp.fatec.sisgenc.repository.EncomendaRepository;
 
 @RestController
-@RequestMapping(value = RestUtil.URL_REST + "/encomenda")
+@RequestMapping(value = "/encomenda")
 public class EncomendaRestController {
 
 	@Autowired

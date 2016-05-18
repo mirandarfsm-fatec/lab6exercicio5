@@ -37,4 +37,12 @@ public class LocalizadorEncomendaView {
 		this.localizador = localizador;
 	}
 
+	public EncomendaService getEncomendaService() {
+		return encomendaService;
+	}
+
+	public void setEncomendaService(EncomendaService encomendaService) {
+		this.encomendaService = encomendaService;
+	}
+
 }
