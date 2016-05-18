@@ -29,7 +29,7 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							value="#{cadastroUsuarioForm.usuario.nome}"
+							value="#{cadastroUsuarioFormView.usuario.nome}"
 							id="nome" size="26" />
 					</p:column>
 				</p:row>
@@ -40,23 +40,23 @@
 					</p:column>
 					<p:column>
 						<p:inputText
-							rendered="#{cadastroUsuarioForm.usuario.id == null}"
-							value="#{cadastroUsuarioForm.usuario.login}" size="26"
+							rendered="#{cadastroUsuarioFormView.usuario.id == null}"
+							value="#{cadastroUsuarioFormView.usuario.login}" size="26"
 							required="true" id="login" />
 						<h:outputText styleClass="text-align: left;"
-							rendered="#{cadastroUsuarioForm.usuario.id != null}"
-							value="#{cadastroUsuarioForm.usuario.login}" />
+							rendered="#{cadastroUsuarioFormView.usuario.id != null}"
+							value="#{cadastroUsuarioFormView.usuario.login}" />
 					</p:column>
 				</p:row>
 
 				<p:row
-					rendered="#{cadastroUsuarioForm.usuario.id != null}">
+					rendered="#{cadastroUsuarioFormView.usuario.id != null}">
 					<p:column>
 						<p:outputLabel value="Ativo:" for="ativo" />
 					</p:column>
 					<p:column>
 						<p:selectBooleanCheckbox
-							value="#{cadastroUsuarioForm.usuario.ativo}" id="ativo"
+							value="#{cadastroUsuarioFormView.usuario.ativo}" id="ativo"
 							disabled="true" />
 					</p:column>
 				</p:row>
@@ -67,11 +67,11 @@
 					</p:column>
 					<p:column>
 						<p:selectManyCheckbox required="true"
-							value="#{cadastroUsuarioForm.usuario.perfis}"
+							value="#{cadastroUsuarioFormView.usuario.perfis}"
 							id="perfis" columns="1" layout="grid"
 							converter="genericEnumConverter">
 							<f:attribute name="collectionType" value="java.util.HashSet" />
-							<f:selectItems value="#{cadastroUsuarioForm.perfis}"
+							<f:selectItems value="#{cadastroUsuarioFormView.perfis}"
 								var="perfil" itemLabel="#{perfil.label}" id="name" />
 						</p:selectManyCheckbox>
 					</p:column>
@@ -82,16 +82,16 @@
 			<div class="vgap-30"></div>
 
 			<p:commandButton
-				styleClass="#{cadastroUsuarioForm.usuario.id == null ? 'btn btn-success' : 'btn'}"
-				action="#{cadastroUsuarioForm.salvar}" value=" Salvar"
+				styleClass="#{cadastroUsuarioFormView.usuario.id == null ? 'btn btn-success' : 'btn'}"
+				action="#{cadastroUsuarioFormView.salvar}" value=" Salvar"
 				id="salvar" update=":formulario-projeto @form" icon="fa fa-save"
 				validateClient="true" />
 
 			<p:commandButton value="Resetar senha" id="resetarSenha"
 				icon="fa fa-refresh" update="msgs"
 				styleClass="btn btn-success margin-l-5"
-				rendered="#{cadastroUsuarioForm.usuario.id != null}"
-				action="#{cadastroUsuarioForm.resetarSenha}" />
+				rendered="#{cadastroUsuarioFormView.usuario.id != null}"
+				action="#{cadastroUsuarioFormView.resetarSenha}" />
 
 			<a href="../usuario/" id="voltar" class="btn">Voltar</a>
 

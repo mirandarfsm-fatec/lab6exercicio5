@@ -6,22 +6,21 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import br.gov.sp.fatec.sisgenc.domain.Perfil;
 import br.gov.sp.fatec.sisgenc.domain.Usuario;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
-import br.gov.sp.fatec.sisgenc.repository.UsuarioRepository;
+import br.gov.sp.fatec.sisgenc.service.UsuarioService;
 
-@ManagedBean(name = "cadastroUsuarioForm")
+@ManagedBean(name = "cadastroUsuarioFormView")
 @SessionScoped
 public class CadastroUsuarioFormView {
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+	@ManagedProperty(value = "#{usuarioService}")
+	private UsuarioService usuarioService;
 
 	private Usuario usuario;
 	private List<Perfil> perfis;
@@ -29,14 +28,14 @@ public class CadastroUsuarioFormView {
 	@PostConstruct
 	public void init() {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
-		setUsuario("novo".equals(id) ? new Usuario() : usuarioRepository
+		setUsuario("novo".equals(id) ? new Usuario() : usuarioService
 				.findOne(Long.valueOf(id)));
 		setPerfis(new ArrayList<Perfil>(Arrays.asList(Perfil.values())));
 		getPerfis().remove(Perfil.ROLE_USER);
 	}
 
 	public void salvar() {
-		usuarioRepository.save(usuario);
+		usuarioService.save(usuario);
 		Mensagem.informacao("Usuario salvo com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/usuario/");
 	}
@@ -55,6 +54,14 @@ public class CadastroUsuarioFormView {
 
 	public void setPerfis(List<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 
 }

@@ -68,6 +68,9 @@
 			<column name="id_encomenda" type="java.sql.Types.BIGINT">
 				<constraints primaryKey="true" primaryKeyName="PK_ENCOMENDA" />
 			</column>
+			<column name="LOCALIZADOR" type="java.sql.Types.VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
 			<column name="descricao" type="java.sql.Types.VARCHAR(255)" />
 			<column name="id_usuario" type="java.sql.Types.BIGINT">
 				<constraints foreignKeyName="fk_encomenda_id_usuario"

@@ -1,31 +1,28 @@
 package br.gov.sp.fatec.sisgenc.view.cadastro.usuario;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import br.gov.sp.fatec.sisgenc.domain.Usuario;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
-import br.gov.sp.fatec.sisgenc.repository.UsuarioRepository;
+import br.gov.sp.fatec.sisgenc.service.UsuarioService;
 
-@ManagedBean(name = "cadastroUsuarioLista")
+@ManagedBean(name = "cadastroUsuarioListaView")
 @SessionScoped
 public class CadastroUsuarioListaView {
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+	@ManagedProperty(value="#{usuarioService}")
+	private UsuarioService usuarioService;
 
 	private Usuario usuario;
 	private Usuario usuarioSelecionado;
-	private List<Usuario> usuarios;
+	private Iterable<Usuario> usuarios;
 
 	@PostConstruct
 	public void init() {
-		usuarios = (List<Usuario>) usuarioRepository.findAll();
+		usuarios = usuarioService.findAll();
 	}
 
 	public void selecionarUsuario(Usuario usuarioEdicao) {
@@ -34,7 +31,7 @@ public class CadastroUsuarioListaView {
 	}
 
 	public void remover(Long id) {
-		usuarioRepository.delete(usuarioRepository.findOne(id));
+		usuarioService.mudarStatus(usuarioService.findOne(id));
 	}
 
 	public Usuario getUsuario() {
@@ -53,12 +50,22 @@ public class CadastroUsuarioListaView {
 		this.usuarioSelecionado = usuarioSelecionado;
 	}
 
-	public List<Usuario> getUsuarios() {
+	public Iterable<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
+	public void setUsuarios(Iterable<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+	
+	
 
 }

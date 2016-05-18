@@ -1,4 +1,4 @@
-package br.gov.sp.fatec.sisgenc.repository;
+package br.gov.sp.fatec.sisgenc.service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ import br.gov.sp.fatec.sisgenc.domain.Usuario;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/applicationContextTest.xml" })
 @Transactional
-public class UsuarioRepositoryTest {
+public class UsuarioServiceTest {
 
 	private static final String NOME = "teste";
 	private static final String SENHA = "698dc19d489c4e4db73e28a713eab07b";
@@ -27,7 +27,7 @@ public class UsuarioRepositoryTest {
 	private static final String EMAIL = "teste@teste.com";
 
 	@Autowired
-	private transient UsuarioRepository usuarioRepo;
+	private transient UsuarioService usuarioService;
 
 	@Before
 	public void setUp() {
@@ -41,9 +41,9 @@ public class UsuarioRepositoryTest {
 		Set<Perfil> perfis = new HashSet<Perfil>();
 		perfis.add(Perfil.ROLE_USER);
 		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
-		usuarioRepo.save(usuario);
+		usuarioService.save(usuario);
 		Assert.assertTrue(usuario.getId() != null);
-		usuario = usuarioRepo.findByNome(NOME);
+		usuario = usuarioService.findByNome(NOME);
 		Assert.assertTrue(usuario.getId() != null);
 	}
 
@@ -53,8 +53,8 @@ public class UsuarioRepositoryTest {
 		Set<Perfil> perfis = new HashSet<Perfil>();
 		perfis.add(Perfil.ROLE_USER);
 		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
-		usuarioRepo.save(usuario);
-		usuario = usuarioRepo.findOne(usuario.getId());
+		usuarioService.save(usuario);
+		usuario = usuarioService.findOne(usuario.getId());
 		Assert.assertNotNull(usuario);
 	}
 
@@ -64,9 +64,9 @@ public class UsuarioRepositoryTest {
 		Set<Perfil> perfis = new HashSet<Perfil>();
 		perfis.add(Perfil.ROLE_USER);
 		Usuario usuario = new Usuario(NOME, LOGIN, SENHA, ativo, EMAIL, perfis);
-		usuarioRepo.save(usuario);
+		usuarioService.save(usuario);
 		Assert.assertTrue(usuario.getId() != null);
-		usuario = usuarioRepo.findByLogin(LOGIN);
+		usuario = usuarioService.findByLogin(LOGIN);
 		Assert.assertTrue(usuario.getId() != null);
 	}
 

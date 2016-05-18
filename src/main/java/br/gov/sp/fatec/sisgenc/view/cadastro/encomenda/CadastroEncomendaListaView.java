@@ -1,41 +1,70 @@
 package br.gov.sp.fatec.sisgenc.view.cadastro.encomenda;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
-import br.gov.sp.fatec.sisgenc.repository.EncomendaRepository;
+import br.gov.sp.fatec.sisgenc.domain.Usuario;
+import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
+import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
-@ManagedBean(name = "cadastroEncomendaLista")
+@ManagedBean(name = "cadastroEncomendaListaView")
 @SessionScoped
 public class CadastroEncomendaListaView {
 
-	@Autowired
-	private EncomendaRepository encomendaRepository;
+	@ManagedProperty(value = "#{encomendaService}")
+	private EncomendaService encomendaService;
 
-	private List<Encomenda> encomendas;
+	private Iterable<Encomenda> encomendas;
+	private Encomenda encomenda;
+	private Encomenda encomendaSelecionada;
 
 	@PostConstruct
 	public void init() {
-		encomendas = (List<Encomenda>) encomendaRepository.findAll();
-	}
-	
-	public void remover(Long id){
-		encomendaRepository.delete(encomendaRepository.findOne(id));
+		encomendas = encomendaService.findAll();
 	}
 
-	public List<Encomenda> getEncomendas() {
+	public void selecionarEncomenda(Encomenda encomendaEdicao) {
+		encomenda = encomendaEdicao;
+		ManagedBeanUtils.showDialog("mudarStatusEncomendaDialog");
+	}
+	
+	public void remover(Long id) {
+		encomendaService.mudarStatus(encomendaService.findOne(id));
+	}
+
+	public Iterable<Encomenda> getEncomendas() {
 		return encomendas;
 	}
 
-	public void setEncomendas(List<Encomenda> encomendas) {
+	public void setEncomendas(Iterable<Encomenda> encomendas) {
 		this.encomendas = encomendas;
 	}
 
+	public EncomendaService getEncomendaService() {
+		return encomendaService;
+	}
+
+	public void setEncomendaService(EncomendaService encomendaService) {
+		this.encomendaService = encomendaService;
+	}
+
+	public Encomenda getEncomendaSelecionada() {
+		return encomendaSelecionada;
+	}
+
+	public void setEncomendaSelecionada(Encomenda encomendaSelecionada) {
+		this.encomendaSelecionada = encomendaSelecionada;
+	}
+
+	public Encomenda getEncomenda() {
+		return encomenda;
+	}
+
+	public void setEncomenda(Encomenda encomenda) {
+		this.encomenda = encomenda;
+	}
 
 }
