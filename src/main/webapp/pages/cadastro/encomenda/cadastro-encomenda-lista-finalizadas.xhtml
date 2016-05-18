@@ -11,15 +11,11 @@
 
 	<ui:define name="main">
 
-		<h3>Lista de Encomendas</h3>
+		<h3>Lista de Encomendas Finalizadas</h3>
 
 		<p:separator></p:separator>
 
 		<h:form id="formulario-encomenda-lista">
-
-			<a id="criar" class="btn btn-success" href="../encomenda/novo"> <span
-				class="fa fa-plus-square"></span> <span>Registro Nova Encomenda</span>
-			</a>
 
 			<div class="vgap-10"></div>
 
@@ -27,7 +23,7 @@
 
 			<div class="vgap-10"></div>
 
-			<p:dataTable value="#{cadastroEncomendaListaView.encomendas}"
+			<p:dataTable value="#{cadastroEncomendaListaView.encomendasFinalizadas}"
 				var="encomenda" emptyMessage="#{msgs.no_records_found}">
 
 				<p:column headerText="Cód. Localizador"
@@ -51,17 +47,10 @@
   				</p:column>
 
 				<p:column width="40" styleClass="text-center">
-					<a href="../encomenda/detalhes/#{encomenda.id}" id="visualiza"
+					<a href="../../encomenda/detalhes/#{encomenda.id}" id="visualiza"
 						class="btn" title="Visualizar Detalhes"> <span
 						class="fa fa-search"></span> <f:param value="#{encomenda.id}"
 							name="id"></f:param>
-					</a>
-				</p:column>
-
-				<p:column width="40" styleClass="text-center">
-					<a href="../encomenda/#{encomenda.id}" id="altera" class="btn"
-						title="Editar"> <span class="fa fa-pencil"></span> <f:param
-							value="#{encomenda.id}" name="id"></f:param>
 					</a>
 				</p:column>
 

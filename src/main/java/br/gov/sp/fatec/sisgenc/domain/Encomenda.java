@@ -1,22 +1,19 @@
 package br.gov.sp.fatec.sisgenc.domain;
 
-import java.util.List;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -29,12 +26,15 @@ public class Encomenda extends EntidadeGenerica {
 
 	private String localizador;
 	private String descricao;
-	private Usuario responsavel;
 	private String origem;
 	private String destino;
-	private String telefone;
-	private List<Percurso> percursos;
-	private boolean ativo;
+	private String responsavelRemetente;
+	private String telefoneRemetente;
+	private String emailRemetente;
+	private String responsavelDestinatario;
+	private String telefoneDestinatario;
+	private String emailDestinatario;
+	private Estado estado = Estado.EM_ESTOQUE;
 
 	@Id
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = SEQ_NAME, sequenceName = SEQ_NAME)
@@ -45,7 +45,7 @@ public class Encomenda extends EntidadeGenerica {
 	};
 
 	@NotNull
-	@NotEmpty(message = "Campo obrigat�rio!")
+	@NotEmpty(message = "Campo obrigatório!")
 	@Column(unique = true)
 	public String getLocalizador() {
 		return localizador;
@@ -63,36 +63,8 @@ public class Encomenda extends EntidadeGenerica {
 		this.descricao = descricao;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-
 	@NotNull
-	@NotEmpty(message = "Campo obrigat�rio!")
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Encomenda.class)
-	@JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_encomenda_id_usuario"), nullable = false)
-	public Usuario getResponsavel() {
-		return responsavel;
-	}
-
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	@NotNull
-	@NotEmpty(message = "Campo obrigat�rio!")
+	@NotEmpty(message = "Campo obrigatório!")
 	public String getDestino() {
 		return destino;
 	}
@@ -102,7 +74,7 @@ public class Encomenda extends EntidadeGenerica {
 	}
 
 	@NotNull
-	@NotEmpty(message = "Campo obrigat�rio!")
+	@NotEmpty(message = "Campo obrigatório!")
 	public String getOrigem() {
 		return origem;
 	}
@@ -111,13 +83,86 @@ public class Encomenda extends EntidadeGenerica {
 		this.origem = origem;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, targetEntity = Percurso.class)
-	public List<Percurso> getPercursos() {
-		return percursos;
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Pattern(regexp = "^[A-Za-záàâãéèêíîïóôõöúûçñÁÀÂÃÉÈÊÍÏÎÓÔÕÖÚÛÇÑ. ]*$", message = "O campo Remetente não pode conter números.")
+	@Column(name = "responsavel_remetente")
+	public String getResponsavelRemetente() {
+		return responsavelRemetente;
 	}
 
-	public void setPercursos(List<Percurso> percursos) {
-		this.percursos = percursos;
+	public void setResponsavelRemetente(String responsavelRemetente) {
+		this.responsavelRemetente = responsavelRemetente;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Pattern(regexp = "^[0-9]*$", message = "O campo Telefone não pode conter letras")
+	@Column(name = "telefone_remetente")
+	public String getTelefoneRemetente() {
+		return telefoneRemetente;
+	}
+
+	public void setTelefoneRemetente(String telefoneRemetente) {
+		this.telefoneRemetente = telefoneRemetente;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Email
+	@Column(name = "email_remetente")
+	public String getEmailRemetente() {
+		return emailRemetente;
+	}
+
+	public void setEmailRemetente(String emailRemetente) {
+		this.emailRemetente = emailRemetente;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Pattern(regexp = "^[A-Za-záàâãéèêíîïóôõöúûçñÁÀÂÃÉÈÊÍÏÎÓÔÕÖÚÛÇÑ. ]*$", message = "O campo Remetente não pode conter números.")
+	@Column(name = "responsavel_destinatario")
+	public String getResponsavelDestinatario() {
+		return responsavelDestinatario;
+	}
+
+	public void setResponsavelDestinatario(String responsavelDestinatario) {
+		this.responsavelDestinatario = responsavelDestinatario;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Pattern(regexp = "^[0-9]*$", message = "O campo Telefone não pode conter letras")
+	@Column(name = "telefone_destinatario")
+	public String getTelefoneDestinatario() {
+		return telefoneDestinatario;
+	}
+
+	public void setTelefoneDestinatario(String telefoneDestinatario) {
+		this.telefoneDestinatario = telefoneDestinatario;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigatório!")
+	@Email
+	@Column(name = "email_destinatario")
+	public String getEmailDestinatario() {
+		return emailDestinatario;
+	}
+
+	public void setEmailDestinatario(String emailDestinatario) {
+		this.emailDestinatario = emailDestinatario;
+	}
+
+	@NotNull(message = "Campo obrigatório!")
+	@Enumerated(EnumType.STRING)
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 }

@@ -25,56 +25,121 @@
 
 				<p:row>
 					<p:column>
+						<p:outputLabel value="Cód Localizador:" for="localizador" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.localizador}"
+							id="localizador" size="26" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
 						<p:outputLabel value="Descrição:" for="descricao" />
 					</p:column>
 					<p:column>
-						<p:inputText
-							value="#{cadastroEncaminhamentoFormView.encomenda.nomeCompleto}"
-							id="descricao" size="26" disabled="true"/>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.descricao}"
+							id="descricao" size="26" disabled="true" />
 					</p:column>
 				</p:row>
-				
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Responsável:" for="responsavel" />
+						<p:outputLabel value="Origem:" for="origem" />
 					</p:column>
 					<p:column>
-						<p:inputText
-							value="#{cadastroEncaminhamentoFormView.encomenda.responsavel}"
-							id="responsavel" size="26" disabled="true" />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.origem}" id="origem"
+							size="26" />
 					</p:column>
 				</p:row>
-				
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Endereço:" for="endereco" />
+						<p:outputLabel value="Destino:" for="destino" />
 					</p:column>
 					<p:column>
-						<p:inputText
-							value="#{cadastroEncaminhamentoFormView.encomenda.endereco}"
-							id="endereco" size="26" disabled="true" />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.destino}"
+							id="destino" size="26" />
 					</p:column>
 				</p:row>
-				
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Telefone:" for="telefone" />
+						<p:outputLabel value="Estado:" for="estado" />
 					</p:column>
 					<p:column>
-						<p:inputText
-							value="#{cadastroEncaminhamentoFormView.encomenda.telefone}"
-							id="telefone" size="26" disabled="true" />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.estado.label}"
+							id="estado" size="26" />
 					</p:column>
 				</p:row>
-				
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Email:" for="email" />
+						<br />
+						<br />
+						<p:outputLabel value="Responsável:" for="responsavel_remetente" />
 					</p:column>
 					<p:column>
-						<p:inputText
-							value="#{cadastroEncaminhamentoFormView.encomenda.email}"
-							id="email" size="26" disabled="true" />
+						<br />
+						<br />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.responsavelRemetente}"
+							id="responsavel_remetente" size="26" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Telefone:" for="telefone_remetente" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.telefoneRemetente}"
+							id="telefone_remetente" size="26" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Email:" for="email_remetente" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.emailRemetente}"
+							id="email_remetente" size="26" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<br />
+						<br />
+						<p:outputLabel value="Responsável:" for="responsavel_destinatario" />
+					</p:column>
+					<p:column>
+						<br />
+						<br />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.responsavelDestinatario}"
+							id="responsavel_destinatario" size="26" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Telefone:" for="telefone_destinatario" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.telefoneDestinatario}"
+							id="telefone_destinatario" size="26" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Email:" for="email_destinatario" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.emailDestinatario}"
+							id="email_destinatario" size="26" />
 					</p:column>
 				</p:row>
 
@@ -82,7 +147,19 @@
 
 			<div class="vgap-30"></div>
 
-			<a href="../../encomenda/" id="voltar" class="btn">Voltar</a>
+			<p:row
+				rendered="#{cadastroEncomendaFormView.encomenda.estado != 'FINALIZADA' and 
+				cadastroEncomendaFormView.encomenda.estado != 'CANCELADA'}">
+				<a href="../../encomenda/" id="voltar" class="btn">Voltar</a>
+			</p:row>
+			<p:row
+				rendered="#{cadastroEncomendaFormView.encomenda.estado == 'FINALIZADA'}">
+				<a href="../../encomenda/finalizadas/" id="voltar-finalizadas" class="btn">Voltar</a>
+			</p:row>
+			<p:row
+				rendered="#{cadastroEncomendaFormView.encomenda.estado == 'CANCELADA'}">
+				<a href="../../encomenda/canceladas/" id="voltar-canceladas" class="btn">Voltar</a>
+			</p:row>
 
 		</h:form>
 

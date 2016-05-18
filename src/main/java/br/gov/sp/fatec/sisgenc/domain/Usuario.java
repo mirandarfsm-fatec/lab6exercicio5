@@ -21,7 +21,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -59,13 +61,14 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = SEQ_NAME, sequenceName = SEQ_NAME)
 	@GeneratedValue(generator = SEQ_NAME, strategy = GenerationType.SEQUENCE)
 	@Override
-	@Column(name="id_usuario")
+	@Column(name = "id_usuario")
 	public Long getId() {
 		return id;
 	}
 
 	@NotNull
 	@NotEmpty(message = "Campo obrigatório!")
+	@Pattern(regexp = "^[A-Za-záàâãéèêíîïóôõöúûçñÁÀÂÃÉÈÊÍÏÎÓÔÕÖÚÛÇÑ. ]*$", message = "O campo Nome não pode conter números.")
 	public String getNome() {
 		return nome;
 	}
@@ -104,6 +107,7 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 
 	@NotNull
 	@NotEmpty(message = "Campo obrigatório!")
+	@Email
 	public String getEmail() {
 		return email;
 	}
@@ -112,6 +116,7 @@ public class Usuario extends EntidadeGenerica implements UserDetails {
 		this.email = email;
 	}
 
+	@NotNull(message = "Campo obrigatório!")
 	@ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario"), foreignKey = @ForeignKey(name = "fk_usuario_perfil_id_usuario"))
 	@Enumerated(EnumType.STRING)

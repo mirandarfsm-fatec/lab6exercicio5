@@ -3,35 +3,41 @@ package br.gov.sp.fatec.sisgenc.view.cadastro.encomenda;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
+import br.gov.sp.fatec.sisgenc.domain.Estado;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
 @ManagedBean(name = "cadastroEncomendaListaView")
-@SessionScoped
+@ViewScoped
 public class CadastroEncomendaListaView {
 
 	@ManagedProperty(value = "#{encomendaService}")
 	private EncomendaService encomendaService;
 
 	private Iterable<Encomenda> encomendas;
+	private Iterable<Encomenda> encomendasParaAtualizar;
+	private Iterable<Encomenda> encomendasFinalizadas;
+	private Iterable<Encomenda> encomendasCanceladas;
 	private Encomenda encomenda;
 	private Encomenda encomendaSelecionada;
 
 	@PostConstruct
 	public void init() {
+		// TODO
 		encomendas = encomendaService.findAll();
-	}
-
-	public void selecionarEncomenda(Encomenda encomendaEdicao) {
-		encomenda = encomendaEdicao;
-		ManagedBeanUtils.showDialog("mudarStatusEncomendaDialog");
+		// TODO
+		encomendasParaAtualizar = encomendaService.findAll();
+		encomendasFinalizadas = encomendaService
+				.findByEstado(Estado.FINALIZADA);
+		encomendasCanceladas = encomendaService.findByEstado(Estado.CANCELADA);
 	}
 	
-	public void remover(Long id) {
-		encomendaService.mudarStatus(encomendaService.findOne(id));
+	public void selecionarEncomenda(Encomenda encomendaEdicao){
+		encomenda = encomendaEdicao;
+		ManagedBeanUtils.showDialog("atualizarEncomendaDialog");
 	}
 
 	public Iterable<Encomenda> getEncomendas() {
@@ -40,6 +46,32 @@ public class CadastroEncomendaListaView {
 
 	public void setEncomendas(Iterable<Encomenda> encomendas) {
 		this.encomendas = encomendas;
+	}
+
+	public Iterable<Encomenda> getEncomendasParaAtualizar() {
+		return encomendasParaAtualizar;
+	}
+
+	public void setEncomendasParaAtualizar(
+			Iterable<Encomenda> encomendasParaAtualizar) {
+		this.encomendasParaAtualizar = encomendasParaAtualizar;
+	}
+
+	public Iterable<Encomenda> getEncomendasFinalizadas() {
+		return encomendasFinalizadas;
+	}
+
+	public void setEncomendasFinalizadas(
+			Iterable<Encomenda> encomendasFinalizadas) {
+		this.encomendasFinalizadas = encomendasFinalizadas;
+	}
+
+	public Iterable<Encomenda> getEncomendasCanceladas() {
+		return encomendasCanceladas;
+	}
+
+	public void setEncomendasCanceladas(Iterable<Encomenda> encomendasCanceladas) {
+		this.encomendasCanceladas = encomendasCanceladas;
 	}
 
 	public EncomendaService getEncomendaService() {

@@ -48,6 +48,17 @@
 							value="#{cadastroUsuarioFormView.usuario.login}" />
 					</p:column>
 				</p:row>
+				
+				<p:row>
+					<p:column>
+						<p:outputLabel value="E-mail:" for="email" />
+					</p:column>
+					<p:column>
+						<p:inputText
+							value="#{cadastroUsuarioFormView.usuario.email}"
+							id="email" size="40" />
+					</p:column>
+				</p:row>
 
 				<p:row
 					rendered="#{cadastroUsuarioFormView.usuario.id != null}">

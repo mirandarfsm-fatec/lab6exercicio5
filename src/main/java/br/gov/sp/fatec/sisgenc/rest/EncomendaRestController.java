@@ -62,7 +62,6 @@ public class EncomendaRestController {
 		}
 		//currentEncomenda.setNome(encomenda.getNome());
 		//currentEncomenda.setEmail(encomenda.getEmail());
-		currentEncomenda.setAtivo(encomenda.isAtivo());
 
 		encomendaRepository.save(currentEncomenda);
 		return new ResponseEntity<Encomenda>(currentEncomenda, HttpStatus.OK);

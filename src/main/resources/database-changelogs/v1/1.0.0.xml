@@ -24,13 +24,12 @@
 				<constraints nullable="false" />
 			</column>
 			<column name="EMAIL" type="java.sql.Types.VARCHAR(50)">
-				<constraints unique="true" />
+				<constraints nullable="false" unique="true"/>
 			</column>
 			<column name="ATIVO" type="java.sql.Types.BOOLEAN">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-
 
 		<createTable tableName="tb_perfil">
 			<column name="id_perfil" type="java.sql.Types.varchar(50)">
@@ -58,6 +57,7 @@
 			constraintName="pk_usuario_perfil" tableName="tb_usuario_perfil" />
 
 	</changeSet>
+
 	<changeSet id="2" author="mirandarfsm">
 		<createSequence incrementBy="1" sequenceName="seq_encomenda_id"
 			startValue="1" />
@@ -68,20 +68,37 @@
 			<column name="id_encomenda" type="java.sql.Types.BIGINT">
 				<constraints primaryKey="true" primaryKeyName="PK_ENCOMENDA" />
 			</column>
-			<column name="LOCALIZADOR" type="java.sql.Types.VARCHAR(20)">
-				<constraints nullable="false" />
+			<column name="localizador" type="java.sql.Types.VARCHAR(20)">
+				<constraints nullable="false" unique="true"/>
 			</column>
 			<column name="descricao" type="java.sql.Types.VARCHAR(255)" />
-			<column name="id_usuario" type="java.sql.Types.BIGINT">
-				<constraints foreignKeyName="fk_encomenda_id_usuario"
-					referencedTableName="tb_encomenda" referencedColumnNames="id_encomenda"
-					nullable="false" />
+			<column name="origem" type="java.sql.Types.VARCHAR(255)">
+				<constraints nullable="false" />
 			</column>
-			<column name="origem" type="java.sql.Types.VARCHAR(255)" />
-			<column name="destino" type="java.sql.Types.VARCHAR(255)" />
-			<column name="telefone" type="java.sql.Types.VARCHAR(15)" />
-			<column name="ativo" type="java.sql.Types.BOOLEAN" />
-
+			<column name="destino" type="java.sql.Types.VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="responsavel_remetente" type="java.sql.Types.VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="telefone_remetente" type="java.sql.Types.VARCHAR(15)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email_remetente" type="java.sql.Types.VARCHAR(15)">
+				<constraints nullable="false" />
+			</column>
+			<column name="responsavel_destinatario" type="java.sql.Types.VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="telefone_destinatario" type="java.sql.Types.VARCHAR(15)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email_destinatario" type="java.sql.Types.VARCHAR(15)">
+				<constraints nullable="false" />
+			</column>
+			<column name="estado" type="java.sql.Types.VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
 		</createTable>
 
 		<createTable tableName="tb_percurso">
@@ -94,12 +111,14 @@
 					nullable="false" />
 			</column>
 			<column name="data" type="java.sql.Types.TIMESTAMP" />
-			<column name="endereco" type="java.sql.Types.VARCHAR(255)" />
-			<column name="estado" type="java.sql.Types.VARCHAR(50)" />
+			<column name="origem" type="java.sql.Types.VARCHAR(255)" />
+			<column name="destino" type="java.sql.Types.VARCHAR(255)" />
+			<column name="estado" type="java.sql.Types.VARCHAR(255)" />
 		</createTable>
 
 	</changeSet>
 	<include file="classpath:database-changelogs/v1/carga_perfil_v1.sql" />
 	<include file="classpath:database-changelogs/v1/carga_admin_v1.sql" />
+	<include file="classpath:database-changelogs/v1/teste_carga_encomenda.sql" />
 
 </databaseChangeLog>

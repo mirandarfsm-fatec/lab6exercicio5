@@ -3,17 +3,18 @@ package br.gov.sp.fatec.sisgenc.view.cadastro.usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Usuario;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
+import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.service.UsuarioService;
 
 @ManagedBean(name = "cadastroUsuarioListaView")
-@SessionScoped
+@ViewScoped
 public class CadastroUsuarioListaView {
 
-	@ManagedProperty(value="#{usuarioService}")
+	@ManagedProperty(value = "#{usuarioService}")
 	private UsuarioService usuarioService;
 
 	private Usuario usuario;
@@ -30,8 +31,13 @@ public class CadastroUsuarioListaView {
 		ManagedBeanUtils.showDialog("mudarStatusUsuarioDialog");
 	}
 
-	public void remover(Long id) {
-		usuarioService.mudarStatus(usuarioService.findOne(id));
+	public void mudarStatusUsuario() {
+		usuarioService.mudarStatus(usuario);
+		usuarioService.findAll();
+		String message = "Usuário status com sucesso!";
+		Mensagem.informacao(message.replace("status",
+				usuario.isAtivo() ? "ativado" : "desativado"));
+		ManagedBeanUtils.hideDialog("mudarStatusUsuarioDialog");
 	}
 
 	public Usuario getUsuario() {
@@ -65,7 +71,5 @@ public class CadastroUsuarioListaView {
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-	
-	
 
 }

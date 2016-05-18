@@ -40,13 +40,28 @@
 	</url-mapping>
 
 	<url-mapping id="cadastro-usuario-detalhes">
-		<pattern value="/administracao/cadastro/usuario/#{id}/detalhes" />
+		<pattern value="/administracao/cadastro/usuario/detalhes/#{id}" />
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-detalhes.jsf" />
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-lista">
 		<pattern value="/administracao/cadastro/encomenda/" />
 		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="cadastro-encomenda-atualizacao">
+		<pattern value="/administracao/cadastro/encomenda/atualizacao/" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-atualizacao.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="cadastro-encomenda-lista-finalizadas">
+		<pattern value="/administracao/cadastro/encomenda/finalizadas/" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista-finalizadas.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="cadastro-encomenda-lista-canceladas">
+		<pattern value="/administracao/cadastro/encomenda/canceladas/" />
+		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista-canceladas.jsf" />
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-form">
@@ -55,7 +70,7 @@
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-detalhes">
-		<pattern value="/administracao/cadastro/encomenda/#{id}/detalhes" />
+		<pattern value="/administracao/cadastro/encomenda/detalhes/#{id}" />
 		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-detalhes.jsf" />
 	</url-mapping>
 

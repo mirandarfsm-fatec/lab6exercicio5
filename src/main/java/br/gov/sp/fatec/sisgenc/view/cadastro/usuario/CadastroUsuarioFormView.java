@@ -7,7 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Perfil;
 import br.gov.sp.fatec.sisgenc.domain.Usuario;
@@ -16,7 +16,7 @@ import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.service.UsuarioService;
 
 @ManagedBean(name = "cadastroUsuarioFormView")
-@SessionScoped
+@ViewScoped
 public class CadastroUsuarioFormView {
 
 	@ManagedProperty(value = "#{usuarioService}")
@@ -38,6 +38,11 @@ public class CadastroUsuarioFormView {
 		usuarioService.save(usuario);
 		Mensagem.informacao("Usuario salvo com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/usuario/");
+	}
+	
+	public void resetarSenha() {
+		usuarioService.resetarSenha(usuario.getId());
+		Mensagem.informacao("Senha resetada com sucesso!");
 	}
 
 	public Usuario getUsuario() {

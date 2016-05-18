@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -32,8 +30,9 @@ public class Percurso extends EntidadeGenerica {
 
 	private Date data;
 	private Encomenda encomenda;
-	private String endereco;
-	private Estado estado;
+	private String origem;
+	private String destino;
+	private String estado;
 
 	@Id
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = SEQ_NAME, sequenceName = SEQ_NAME)
@@ -42,7 +41,7 @@ public class Percurso extends EntidadeGenerica {
 	public Long getId() {
 		return id;
 	};
-	
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getData() {
@@ -65,23 +64,32 @@ public class Percurso extends EntidadeGenerica {
 	}
 
 	@NotNull
-	@NotEmpty(message = "Campo obrigatÛrio!")
-	public String getEndereco() {
-		return endereco;
+	@NotEmpty(message = "Campo obrigat√≥rio!")
+	public String getOrigem() {
+		return origem;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setOrigem(String origem) {
+		this.origem = origem;
 	}
 
 	@NotNull
-	@NotEmpty(message = "Campo obrigatÛrio!")
-	@Enumerated(EnumType.STRING)
-	public Estado getEstado() {
+	@NotEmpty(message = "Campo obrigat√≥rio!")
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	@NotNull
+	@NotEmpty(message = "Campo obrigat√≥rio!")
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

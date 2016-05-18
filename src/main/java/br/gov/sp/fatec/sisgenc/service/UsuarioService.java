@@ -13,6 +13,19 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	public Usuario save(Usuario usuario) {
+		gerarPrimeiraSenha(usuario);
+		return usuarioRepository.save(usuario);
+	}
+	
+	public void gerarPrimeiraSenha(Usuario usuario) {
+		if (usuario.getSenha() == null) {
+			usuario.setSenha("698dc19d489c4e4db73e28a713eab07b");
+		}
+	}
+	
+	public Usuario resetarSenha(Long id) {
+		Usuario usuario = findOne(id);
+		usuario.setSenha("698dc19d489c4e4db73e28a713eab07b");
 		return usuarioRepository.save(usuario);
 	}
 

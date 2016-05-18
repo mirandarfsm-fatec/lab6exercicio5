@@ -3,15 +3,15 @@ package br.gov.sp.fatec.sisgenc.view.cadastro.encomenda;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
-@ManagedBean(name = "cadastroEncomendaForm")
-@SessionScoped
+@ManagedBean(name = "cadastroEncomendaFormView")
+@ViewScoped
 public class CadastroEncomendaFormView {
 
 	@ManagedProperty(value = "#{encomendaService}")

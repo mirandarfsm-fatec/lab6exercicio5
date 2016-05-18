@@ -5,23 +5,36 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:sec="http://www.springframework.org/security/tags" >
+	xmlns:sec="http://www.springframework.org/security/tags">
 
 	<h:outputText value="#{pageContext.request.pathTranslated}" />
 
 	<h:form id="form-menu" prependId="false">
 
-		<p:accordionPanel styleClass="menu-sigapf" activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
-			<p:ajax event="tabChange" listener="#{sessionBean.menuTabChange}" global="false" immediate="true" />
+		<p:accordionPanel styleClass="menu-sigapf"
+			activeIndex="#{sessionBean.menuIndex}" dynamic="true" id="menu"
+			rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER') or request.isUserInRole('ROLE_FUNC')}">
+			<p:ajax event="tabChange" listener="#{sessionBean.menuTabChange}"
+				global="false" immediate="true" />
 
-			<p:tab title="Administração" id="cadastros-adm" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
+			<p:tab title="Administração" id="cadastros-adm" 
+				rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
 				<p:menu>
-						<p:menuitem value="Cadastro de Usuário" id="menu-adm" url="/administracao/cadastro/usuario/" />
+					<p:menuitem value="Cadastro de Usuário" id="menu-adm1"
+						url="/administracao/cadastro/usuario/" />
 				</p:menu>
 			</p:tab>
-			<p:tab title="Encomenda" id="cadastros-tab" rendered="#{request.isUserInRole('ROLE_ADMIN') or request.isUserInRole('ROLE_GER')}">
+			<p:tab title="Encomendas" id="cadastros-enc"
+				rendered="#{request.isUserInRole('ROLE_FUNC') or request.isUserInRole('ROLE_GER')}">
 				<p:menu>
-						<p:menuitem value="Cadastro de Encomenda" id="menu-principal" url="/administracao/cadastro/encomenda/" />
+					<p:menuitem value="Registro de Entrada" id="menu-enc1"
+						url="/administracao/cadastro/encomenda/" />
+					<p:menuitem value="Atualização do Estado" id="menu-enc2"
+						url="/administracao/cadastro/encomenda/atualizacao/" />
+					<p:menuitem value="Encomen. Finalizadas" id="menu-enc3"
+						url="/administracao/cadastro/encomenda/finalizadas/" />
+					<p:menuitem value="Encomen. Canceladas" id="menu-enc4"
+						url="/administracao/cadastro/encomenda/canceladas/" />
 				</p:menu>
 			</p:tab>
 		</p:accordionPanel>

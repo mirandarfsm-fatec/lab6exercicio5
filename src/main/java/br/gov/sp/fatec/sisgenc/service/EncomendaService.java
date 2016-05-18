@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
+import br.gov.sp.fatec.sisgenc.domain.Estado;
 import br.gov.sp.fatec.sisgenc.repository.EncomendaRepository;
 
 @Service("encomendaService")
@@ -25,11 +26,6 @@ public class EncomendaService {
 		return encomendaRepository.findOne(id);
 	}
 
-	public Encomenda mudarStatus(Encomenda encomenda) {
-		encomenda.setAtivo(!encomenda.isAtivo());
-		return encomendaRepository.save(encomenda);
-	}
-
 	public Encomenda save(Encomenda encomenda) {
 		String localizador = encomenda.getLocalizador() == null ? generateHashLocalizator()
 				: encomenda.getLocalizador();
@@ -39,5 +35,9 @@ public class EncomendaService {
 
 	public Encomenda findByLocalizador(String localizador) {
 		return encomendaRepository.findByLocalizador(localizador);
+	}
+
+	public Iterable<Encomenda> findByEstado(Estado estado) {
+		return encomendaRepository.findByEstado(estado);
 	}
 }

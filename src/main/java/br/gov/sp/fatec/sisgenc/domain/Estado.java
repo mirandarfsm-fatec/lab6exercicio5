@@ -2,8 +2,9 @@ package br.gov.sp.fatec.sisgenc.domain;
 
 public enum Estado {
 
-	RECEBIDO("Recebido"),EM_ESTOQUE("Em Estoque"),ENTREGUE("Entregue");
-	
+	EM_ESTOQUE("Em Estoque"), ENCAMINHADA("Encaminhada"), RECEBIDA("Recebida"), FINALIZADA(
+			"Finalizada"), CANCELADA("Cancelada");
+
 	private String label;
 
 	private Estado(String label) {
@@ -16,5 +17,5 @@ public enum Estado {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}	
+	}
 }

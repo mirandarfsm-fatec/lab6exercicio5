@@ -50,7 +50,7 @@
 /* -- TOPO */
 .topo {
 	padding: 10px;
-	background: no-repeat #E0DADA;
+	background: url("../imagens/logoSisgenc.jpg") no-repeat #E0DADA;
 	color: #000;
 	height: 60px;
 	position: static;
