@@ -27,6 +27,7 @@ public class CadastroEncomendaListaView {
 
 	@PostConstruct
 	public void init() {
+
 		List<Estado> estados = new ArrayList<>();
 		estados.add(Estado.FINALIZADA);
 		estados.add(Estado.CANCELADA);
