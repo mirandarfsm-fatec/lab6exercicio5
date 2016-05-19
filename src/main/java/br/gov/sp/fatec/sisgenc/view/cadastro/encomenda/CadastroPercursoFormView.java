@@ -31,7 +31,7 @@ public class CadastroPercursoFormView {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
 		encomenda = encomendaService.findOne(Long.valueOf(id));
 		percurso = new Percurso();
-		estados = getEstados();
+		this.estados = getEstados();
 	}
 
 	public void atualizar() {

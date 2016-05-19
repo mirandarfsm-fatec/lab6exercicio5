@@ -1,5 +1,7 @@
 package br.gov.sp.fatec.sisgenc.service;
 
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,9 @@ public class EncomendaService {
 
 	public Iterable<Encomenda> findByEstado(Estado estado) {
 		return encomendaRepository.findByEstado(estado);
+	}
+
+	public Iterable<Encomenda> findByEstadoNotIn(List<Estado> estados) {
+		return encomendaRepository.findByEstadoNotIn(estados);
 	}
 }

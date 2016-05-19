@@ -7,19 +7,13 @@ import javax.faces.bean.SessionScoped;
 import org.primefaces.component.accordionpanel.AccordionPanel;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.event.TabChangeEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.gov.sp.fatec.sisgenc.view.AuthenticationContext;
 
 @SessionScoped
 @Service(value = "sessionBean")
 public class SessionBean implements Serializable {
 
 	private static final long serialVersionUID = -758220012612751178L;
-
-	@Autowired
-	private AuthenticationContext authenticationContext;
 
 	private int menuIndex = 0;
 
