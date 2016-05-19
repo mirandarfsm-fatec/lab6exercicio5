@@ -28,7 +28,7 @@
 		<pattern value="/localizador/" />
 		<view-id value="/pages/localizador/localizador.jsf" />
 	</url-mapping>
-
+	
 	<url-mapping id="cadastro-usuario-lista">
 		<pattern value="/administracao/cadastro/usuario/" />
 		<view-id value="/pages/cadastro/usuario/cadastro-usuario-lista.jsf" />
@@ -70,6 +70,12 @@
 		<pattern value="/administracao/cadastro/encomenda/atualizacao/#{id}" />
 		<view-id
 			value="/pages/cadastro/encomenda/cadastro-encomenda-atualizacao.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="cadastro-encomenda-atualizacao-lista">
+		<pattern value="/administracao/cadastro/encomenda/atualizacao/lista/#{id}" />
+		<view-id
+			value="/pages/cadastro/encomenda/cadastro-encomenda-atualizacao-lista.jsf" />
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-detalhes">

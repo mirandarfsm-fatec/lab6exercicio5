@@ -33,11 +33,13 @@ public class CadastroEncomendaFormView {
 	}
 
 	public void salvar() {
-		encomendaService.save(encomenda);
 		if (encomenda.getId() == null) {
+			encomendaService.save(encomenda);
 			percurso.setDestino(encomenda.getDestino());
 			percurso.setOrigem(encomenda.getOrigem());
 			percursoService.save(percurso, encomenda);
+		} else {
+			encomendaService.save(encomenda);
 		}
 		Mensagem.informacao("Encomenda salva com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/encomenda/");

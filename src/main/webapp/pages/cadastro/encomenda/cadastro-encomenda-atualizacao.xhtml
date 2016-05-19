@@ -21,6 +21,8 @@
 
 			<p:messages id="msgs" showIcon="false" autoUpdate="true" />
 
+			<div class="vgap-10"></div>
+
 			<p:panelGrid styleClass="formulario-sigapf">
 
 				<p:row>
@@ -28,7 +30,7 @@
 						<p:outputLabel value="Cód Localizador:" for="localizador" />
 					</p:column>
 					<p:column>
-						<p:outputLabel
+						<h:outputText
 							value="#{cadastroPercursoFormView.encomenda.localizador}"
 							id="localizador" size="26" />
 					</p:column>
@@ -51,29 +53,29 @@
 							id="destino" size="26" />
 					</p:column>
 				</p:row>
-<!-- 				<p:row> -->
-<!-- 					<p:column> -->
-<!-- 						<p:outputLabel value="Estado:" for="estado" /> -->
-<!-- 					</p:column> -->
-<!-- 					<p:column> -->
-<!-- 						<p:selectOneMenu -->
-<!-- 							value="#{cadastroPercursoFormView.encomenda.estado}"> -->
-<!-- 							<f:selectItem -->
-<!-- 								itemLabel="#{cadastroPercursoFormView.encomenda.estado.label}" /> -->
-<!-- 							<f:selectItems value="#{cadastroPercursoFormView.estados}" -->
-<!-- 								var="estado" itemValue="#{estado}" itemLabel="#{estado.label}" /> -->
-<!-- 						</p:selectOneMenu> -->
-<!-- 					</p:column> -->
-<!-- 				</p:row> -->
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Estado:" for="estado" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu
+							value="#{cadastroPercursoFormView.encomenda.estado}"
+							requiredMessage="É necessário escolher um estado.">
+							<f:selectItems value="#{cadastroPercursoFormView.estados}"
+								var="estado" id="estado" itemValue="#{estado}"
+								itemLabel="#{estado.label}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
 
 			</p:panelGrid>
 
 			<div class="vgap-30"></div>
 
 			<p:commandButton styleClass="btn btn-success"
-				action="#{cadastroPercursoFormView.salvar}" value=" Atualizar"
-				id="salvar" update=":formulario-projeto @form" icon="fa fa-save"
-				validateClient="true" />
+				action="#{cadastroPercursoFormView.atualizar}" value=" Atualizar"
+				id="salvar" update=":formulario-projeto :msgs @form"
+				icon="fa fa-gavel" validateClient="true" />
 
 			<a href="../../encomenda/" id="voltar" class="btn">Voltar</a>
 

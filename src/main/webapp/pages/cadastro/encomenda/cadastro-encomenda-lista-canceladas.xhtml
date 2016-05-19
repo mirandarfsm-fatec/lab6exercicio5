@@ -23,7 +23,8 @@
 
 			<div class="vgap-10"></div>
 
-			<p:dataTable value="#{cadastroEncomendaListaView.encomendasCanceladas}"
+			<p:dataTable
+				value="#{cadastroEncomendaListaView.encomendasCanceladas}"
 				var="encomenda" emptyMessage="#{msgs.no_records_found}">
 
 				<p:column headerText="Cód. Localizador"
@@ -31,10 +32,8 @@
 					width="150" styleClass="text-center">
 		  				#{encomenda.localizador}
 		  		</p:column>
-		  		
-		  		<p:column headerText="Estado"
-					filterBy="#{encomenda.estado.label}" filterMatchMode="contains"
-					width="50" styleClass="text-center">
+
+				<p:column headerText="Estado" width="50" styleClass="text-center">
 		  				#{encomenda.estado.label}
 		  		</p:column>
 

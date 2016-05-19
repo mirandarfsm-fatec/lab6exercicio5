@@ -6,6 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
 import br.gov.sp.fatec.sisgenc.domain.Percurso;
+import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 import br.gov.sp.fatec.sisgenc.service.PercursoService;
 
@@ -21,15 +22,17 @@ public class CadastroPercursoListaView {
 	private Iterable<Percurso> percursos;
 	private Encomenda encomenda;
 	private Percurso percurso;
-	// TODO - não ta pegando o valor que é passado pelo usuário
 	private String localizador;
 
 	public void localizar() {
 		encomenda = encomendaService.findByLocalizador(localizador);
-		//CORRETO
-		//percursos = percursoService.findByEncomenda(encomenda);
-		//TESTE
-		percursos = percursoService.findAll();
+		percursos = percursoService.findByEncomenda(encomenda);
+	}
+
+	public void atualizar() {
+		String id = ManagedBeanUtils.obterParametroRequest("id");
+		encomenda = encomendaService.findOne(Long.valueOf(id));
+		percursos = percursoService.findByEncomenda(encomenda);
 	}
 
 	public Iterable<Percurso> getPercursos() {

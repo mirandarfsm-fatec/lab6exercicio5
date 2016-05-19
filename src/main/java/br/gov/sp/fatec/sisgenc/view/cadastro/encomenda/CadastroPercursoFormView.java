@@ -31,13 +31,18 @@ public class CadastroPercursoFormView {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
 		encomenda = encomendaService.findOne(Long.valueOf(id));
 		percurso = new Percurso();
+		estados = getEstados();
 	}
 
-	public void salvar() {
-		encomendaService.save(encomenda);
-		percursoService.save(percurso, encomenda);
-		Mensagem.informacao("Encomenda atualizada com sucesso!");
-		ManagedBeanUtils.redirecionar("/administracao/cadastro/encomenda/");
+	public void atualizar() {
+		if (encomenda.getEstado().getLabel() == "Em Estoque") {
+			Mensagem.erro("Em Estoque só é possível no registro de entrada da encomenda!");
+		} else {
+			encomendaService.save(encomenda);
+			percursoService.save(percurso, encomenda);
+			Mensagem.informacao("Encomenda atualizada com sucesso!");
+			ManagedBeanUtils.redirecionar("/administracao/cadastro/encomenda/");
+		}
 	}
 
 	public EncomendaService getEncomendaService() {
