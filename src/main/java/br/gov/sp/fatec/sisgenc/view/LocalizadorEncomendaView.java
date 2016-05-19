@@ -44,5 +44,4 @@ public class LocalizadorEncomendaView {
 	public void setEncomendaService(EncomendaService encomendaService) {
 		this.encomendaService = encomendaService;
 	}
-
 }

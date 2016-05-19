@@ -7,7 +7,6 @@ import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
 import br.gov.sp.fatec.sisgenc.domain.Estado;
-import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 
 @ManagedBean(name = "cadastroEncomendaListaView")
@@ -18,7 +17,6 @@ public class CadastroEncomendaListaView {
 	private EncomendaService encomendaService;
 
 	private Iterable<Encomenda> encomendas;
-	private Iterable<Encomenda> encomendasParaAtualizar;
 	private Iterable<Encomenda> encomendasFinalizadas;
 	private Iterable<Encomenda> encomendasCanceladas;
 	private Encomenda encomenda;
@@ -26,18 +24,11 @@ public class CadastroEncomendaListaView {
 
 	@PostConstruct
 	public void init() {
-		// TODO
+		// TODO - a lista 'encomendas' deve listar apenas os estados: EM_ESTOQUE / ENCAMINHADA / RECEBIDA
 		encomendas = encomendaService.findAll();
-		// TODO
-		encomendasParaAtualizar = encomendaService.findAll();
 		encomendasFinalizadas = encomendaService
 				.findByEstado(Estado.FINALIZADA);
 		encomendasCanceladas = encomendaService.findByEstado(Estado.CANCELADA);
-	}
-	
-	public void selecionarEncomenda(Encomenda encomendaEdicao){
-		encomenda = encomendaEdicao;
-		ManagedBeanUtils.showDialog("atualizarEncomendaDialog");
 	}
 
 	public Iterable<Encomenda> getEncomendas() {
@@ -46,15 +37,6 @@ public class CadastroEncomendaListaView {
 
 	public void setEncomendas(Iterable<Encomenda> encomendas) {
 		this.encomendas = encomendas;
-	}
-
-	public Iterable<Encomenda> getEncomendasParaAtualizar() {
-		return encomendasParaAtualizar;
-	}
-
-	public void setEncomendasParaAtualizar(
-			Iterable<Encomenda> encomendasParaAtualizar) {
-		this.encomendasParaAtualizar = encomendasParaAtualizar;
 	}
 
 	public Iterable<Encomenda> getEncomendasFinalizadas() {

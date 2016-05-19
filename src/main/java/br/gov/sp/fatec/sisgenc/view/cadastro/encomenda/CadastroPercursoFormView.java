@@ -6,15 +6,16 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import br.gov.sp.fatec.sisgenc.domain.Encomenda;
+import br.gov.sp.fatec.sisgenc.domain.Estado;
 import br.gov.sp.fatec.sisgenc.domain.Percurso;
 import br.gov.sp.fatec.sisgenc.helper.ManagedBeanUtils;
 import br.gov.sp.fatec.sisgenc.helper.Mensagem;
 import br.gov.sp.fatec.sisgenc.service.EncomendaService;
 import br.gov.sp.fatec.sisgenc.service.PercursoService;
 
-@ManagedBean(name = "cadastroEncomendaFormView")
+@ManagedBean(name = "cadastroPercursoFormView")
 @ViewScoped
-public class CadastroEncomendaFormView {
+public class CadastroPercursoFormView {
 
 	@ManagedProperty(value = "#{encomendaService}")
 	private EncomendaService encomendaService;
@@ -23,23 +24,19 @@ public class CadastroEncomendaFormView {
 
 	private Encomenda encomenda;
 	private Percurso percurso;
+	private Estado[] estados;
 
 	@PostConstruct
 	public void init() {
 		String id = ManagedBeanUtils.obterParametroRequest("id");
-		encomenda = "novo".equals(id) ? new Encomenda() : encomendaService
-				.findOne(Long.valueOf(id));
+		encomenda = encomendaService.findOne(Long.valueOf(id));
 		percurso = new Percurso();
 	}
 
 	public void salvar() {
 		encomendaService.save(encomenda);
-		if (encomenda.getId() == null) {
-			percurso.setDestino(encomenda.getDestino());
-			percurso.setOrigem(encomenda.getOrigem());
-			percursoService.save(percurso, encomenda);
-		}
-		Mensagem.informacao("Encomenda salva com sucesso!");
+		percursoService.save(percurso, encomenda);
+		Mensagem.informacao("Encomenda atualizada com sucesso!");
 		ManagedBeanUtils.redirecionar("/administracao/cadastro/encomenda/");
 	}
 
@@ -75,4 +72,11 @@ public class CadastroEncomendaFormView {
 		this.percurso = percurso;
 	}
 
+	public Estado[] getEstados() {
+		return Estado.values();
+	}
+
+	public void setEstados(Estado[] estados) {
+		this.estados = estados;
+	}
 }

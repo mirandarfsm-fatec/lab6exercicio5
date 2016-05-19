@@ -119,6 +119,5 @@
 	</changeSet>
 	<include file="classpath:database-changelogs/v1/carga_perfil_v1.sql" />
 	<include file="classpath:database-changelogs/v1/carga_admin_v1.sql" />
-	<include file="classpath:database-changelogs/v1/teste_carga_encomenda.sql" />
 
 </databaseChangeLog>

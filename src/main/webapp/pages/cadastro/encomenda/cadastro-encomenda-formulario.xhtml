@@ -28,7 +28,7 @@
 						<p:outputLabel value="Cód Localizador:" for="localizador" />
 					</p:column>
 					<p:column>
-						<p:inputText
+						<h:outputText
 							rendered="#{cadastroEncomendaFormView.encomenda.localizador != null}"
 							value="#{cadastroEncomendaFormView.encomenda.localizador}"
 							id="localizador" size="26" />
@@ -52,7 +52,12 @@
 					</p:column>
 					<p:column>
 						<p:inputText value="#{cadastroEncomendaFormView.encomenda.origem}"
-							id="origem" size="26" />
+							id="origem" size="26"
+							rendered="#{cadastroEncomendaFormView.encomenda.localizador == null}" />
+						<h:outputText
+							value="#{cadastroEncomendaFormView.encomenda.origem}"
+							id="origemm" size="26"
+							rendered="#{cadastroEncomendaFormView.encomenda.localizador != null}" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -61,20 +66,23 @@
 					</p:column>
 					<p:column>
 						<p:inputText
+							rendered="#{cadastroEncomendaFormView.encomenda.localizador == null}"
 							value="#{cadastroEncomendaFormView.encomenda.destino}"
 							id="destino" size="26" />
+						<h:outputText
+							rendered="#{cadastroEncomendaFormView.encomenda.localizador != null}"
+							value="#{cadastroEncomendaFormView.encomenda.destino}"
+							id="destinoo" size="26" />
 					</p:column>
 				</p:row>
 
 				<p:row>
 					<p:column>
 						<br />
-						<br />
 						<p:outputLabel value="Responsável - Remetente:"
 							for="responsavel_remetente" />
 					</p:column>
 					<p:column>
-						<br />
 						<br />
 						<p:inputText
 							value="#{cadastroEncomendaFormView.encomenda.responsavelRemetente}"
@@ -89,7 +97,7 @@
 					<p:column>
 						<p:inputMask
 							value="#{cadastroEncomendaFormView.encomenda.telefoneRemetente}"
-							id="telefone_remetente" size="26" mask="(99)9999-9999?9"/>
+							id="telefone_remetente" size="26" mask="(99)9999-9999?9" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -106,12 +114,10 @@
 					<div class="vgap-10"></div>
 					<p:column>
 						<br />
-						<br />
 						<p:outputLabel value="Responsável - Destinatário:"
 							for="responsavel_destinatario" />
 					</p:column>
 					<p:column>
-						<br />
 						<br />
 						<p:inputText
 							value="#{cadastroEncomendaFormView.encomenda.responsavelDestinatario}"
@@ -126,7 +132,7 @@
 					<p:column>
 						<p:inputMask
 							value="#{cadastroEncomendaFormView.encomenda.telefoneDestinatario}"
-							id="telefone_destinatario" size="26" mask="(99)9999-9999?9"/>
+							id="telefone_destinatario" size="26" mask="(99)9999-9999?9" />
 					</p:column>
 				</p:row>
 				<p:row>

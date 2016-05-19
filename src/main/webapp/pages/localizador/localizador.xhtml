@@ -19,24 +19,50 @@
 
 		<p:row>
 			<p:column>
-				<p:outputLabel value="Código Localizador:" for="localizador" />
+				<p:outputLabel value="Código Localizador:" for="codigoLocalizador" />
 			</p:column>
 			<p:column>
-				<p:inputText
-					value="#{localizadorEncomendaView.encomenda.localizador}"
-					id="localizador" size="50" />
+				<p:inputText value="#{cadastroPercursoListaView.localizador}"
+					id="codigoLocalizador" size="50" requiredMessage="Informe o localizador."/>
 			</p:column>
 		</p:row>
-		
 		<div class="hgap-10"></div>
-
 		<p:row>
 			<p:commandButton styleClass="btn"
-				action="#{localizadorEncomendaView.localizarEncomenda}"
+				action="#{cadastroPercursoListaView.localizar}"
 				value="Localizar" id="localizar" icon="fa fa-search"
-				validateClient="true" />
-
+				validateClient="true" update=":percursos-por-encomenda-lista"/>
 		</p:row>
+		<div class="vgap-10"></div>
+		<h:form id="percursos-por-encomenda-lista">
+
+			<p:dataTable value="#{cadastroPercursoListaView.percursos}"
+				var="percurso" emptyMessage="#{msgs.no_records_found}">
+
+				<f:facet name="header">
+						Localizador: #{percurso.encomenda.localizador}
+       			</f:facet>
+
+				<p:column headerText="Data e Hora" width="30"
+					styleClass="text-center">
+		  				#{percurso.data}
+		  		</p:column>
+
+				<p:column headerText="Estado" width="30" styleClass="text-center">
+		  				#{percurso.estado}
+		  		</p:column>
+
+				<p:column headerText="Origem" styleClass="text-center" width="100">
+	  					#{percurso.origem}
+  				</p:column>
+
+				<p:column headerText="Destino" styleClass="text-center" width="100">
+	  					#{percurso.destino}
+  				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
 
 	</ui:define>
 

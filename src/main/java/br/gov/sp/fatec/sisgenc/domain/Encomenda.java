@@ -97,7 +97,6 @@ public class Encomenda extends EntidadeGenerica {
 
 	@NotNull
 	@NotEmpty(message = "Campo obrigatório!")
-	@Pattern(regexp = "^[0-9]*$", message = "O campo Telefone não pode conter letras")
 	@Column(name = "telefone_remetente")
 	public String getTelefoneRemetente() {
 		return telefoneRemetente;
@@ -133,7 +132,6 @@ public class Encomenda extends EntidadeGenerica {
 
 	@NotNull
 	@NotEmpty(message = "Campo obrigatório!")
-	@Pattern(regexp = "^[0-9]*$", message = "O campo Telefone não pode conter letras")
 	@Column(name = "telefone_destinatario")
 	public String getTelefoneDestinatario() {
 		return telefoneDestinatario;

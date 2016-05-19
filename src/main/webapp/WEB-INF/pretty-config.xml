@@ -18,7 +18,7 @@
 		<pattern value="/home/" />
 		<view-id value="/pages/principal/index.jsf" />
 	</url-mapping>
-	
+
 	<url-mapping id="perfil">
 		<pattern value="/perfil/" />
 		<view-id value="/pages/perfil/perfil.jsf" />
@@ -48,25 +48,28 @@
 		<pattern value="/administracao/cadastro/encomenda/" />
 		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista.jsf" />
 	</url-mapping>
-	
-	<url-mapping id="cadastro-encomenda-atualizacao">
-		<pattern value="/administracao/cadastro/encomenda/atualizacao/" />
-		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-atualizacao.jsf" />
-	</url-mapping>
-	
+
 	<url-mapping id="cadastro-encomenda-lista-finalizadas">
 		<pattern value="/administracao/cadastro/encomenda/finalizadas/" />
-		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista-finalizadas.jsf" />
+		<view-id
+			value="/pages/cadastro/encomenda/cadastro-encomenda-lista-finalizadas.jsf" />
 	</url-mapping>
-	
+
 	<url-mapping id="cadastro-encomenda-lista-canceladas">
 		<pattern value="/administracao/cadastro/encomenda/canceladas/" />
-		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-lista-canceladas.jsf" />
+		<view-id
+			value="/pages/cadastro/encomenda/cadastro-encomenda-lista-canceladas.jsf" />
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-form">
 		<pattern value="/administracao/cadastro/encomenda/#{id}" />
 		<view-id value="/pages/cadastro/encomenda/cadastro-encomenda-formulario.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cadastro-encomenda-atualizacao">
+		<pattern value="/administracao/cadastro/encomenda/atualizacao/#{id}" />
+		<view-id
+			value="/pages/cadastro/encomenda/cadastro-encomenda-atualizacao.jsf" />
 	</url-mapping>
 
 	<url-mapping id="cadastro-encomenda-detalhes">

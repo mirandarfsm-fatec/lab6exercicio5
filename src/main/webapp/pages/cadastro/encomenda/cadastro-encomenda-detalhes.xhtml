@@ -77,11 +77,9 @@
 				<p:row>
 					<p:column>
 						<br />
-						<br />
 						<p:outputLabel value="Responsável:" for="responsavel_remetente" />
 					</p:column>
 					<p:column>
-						<br />
 						<br />
 						<h:outputText
 							value="#{cadastroEncomendaFormView.encomenda.responsavelRemetente}"
@@ -111,11 +109,9 @@
 				<p:row>
 					<p:column>
 						<br />
-						<br />
 						<p:outputLabel value="Responsável:" for="responsavel_destinatario" />
 					</p:column>
 					<p:column>
-						<br />
 						<br />
 						<h:outputText
 							value="#{cadastroEncomendaFormView.encomenda.responsavelDestinatario}"
@@ -154,11 +150,13 @@
 			</p:row>
 			<p:row
 				rendered="#{cadastroEncomendaFormView.encomenda.estado == 'FINALIZADA'}">
-				<a href="../../encomenda/finalizadas/" id="voltar-finalizadas" class="btn">Voltar</a>
+				<a href="../../encomenda/finalizadas/" id="voltar-finalizadas"
+					class="btn">Voltar</a>
 			</p:row>
 			<p:row
 				rendered="#{cadastroEncomendaFormView.encomenda.estado == 'CANCELADA'}">
-				<a href="../../encomenda/canceladas/" id="voltar-canceladas" class="btn">Voltar</a>
+				<a href="../../encomenda/canceladas/" id="voltar-canceladas"
+					class="btn">Voltar</a>
 			</p:row>
 
 		</h:form>
