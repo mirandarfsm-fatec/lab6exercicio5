@@ -1,5 +1,8 @@
 package br.gov.sp.fatec.sisgenc.view.cadastro.encomenda;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,10 +27,11 @@ public class CadastroEncomendaListaView {
 
 	@PostConstruct
 	public void init() {
-		// TODO - a lista 'encomendas' deve listar apenas os estados: EM_ESTOQUE / ENCAMINHADA / RECEBIDA
-		encomendas = encomendaService.findAll();
-		encomendasFinalizadas = encomendaService
-				.findByEstado(Estado.FINALIZADA);
+		List<Estado> estados = new ArrayList<>();
+		estados.add(Estado.FINALIZADA);
+		estados.add(Estado.CANCELADA);
+		encomendas = encomendaService.findByEstadoNotIn(estados);
+		encomendasFinalizadas = encomendaService.findByEstado(Estado.FINALIZADA);
 		encomendasCanceladas = encomendaService.findByEstado(Estado.CANCELADA);
 	}
 
